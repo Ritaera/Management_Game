@@ -15,12 +15,11 @@ public class UIStatus : MonoBehaviour
     private Image _safetyButton;
     private Image _beliefButton;
     private Image _cultureButton;
+    public Action OpenCard; // 카드매니저 에서 사용할 액션.
 
     // 다음턴 추가될 골드 표시.
-    private string _sumgoldText;
+    private string _nextDayGold;
 
-
-    public Action OpenCard;
 
     private void Awake()
     {
@@ -48,8 +47,8 @@ public class UIStatus : MonoBehaviour
         _beliefButton.fillAmount = GameManager.instance.BeliefPoint.Value / GameManager.instance.BeliefPoint.Max;
         _cultureButton.fillAmount = GameManager.instance.CulturePoint.Value / GameManager.instance.CulturePoint.Max;
         _date.text = "날짜 : " + GameManager.instance.Date.ToString();
-        _sumgoldText = GameManager.instance.SumGold.ToString();
-        _gold.text = $"골드 :   {_sumgoldText}" + GameManager.instance.Gold.ToString();
+        _nextDayGold = GameManager.instance.SumGold.ToString();
+        _gold.text = "골드 : " + GameManager.instance.Gold.ToString() + $" {_nextDayGold}";
     }
 
     // KJH => 다음날 버튼 눌렀을때 이 함수 호출.
@@ -59,10 +58,11 @@ public class UIStatus : MonoBehaviour
         {
             //Todo: 게임 종료씬 
         }
-        gameObject.GetComponent<UIStatus>().enabled = false;
+        
+        // 
         // KJH => Todo: 다음날 넘어가는 스크립트 제작 후 여기 와서 이름 변경하기.
-        //gameObject.GetComponent< 스크립트 이름 >().enabled = false;  => nextTurn 스크립트 활성화.
-        StartCoroutine(C_NextDay(5));
+        // NextTurn 오브젝트 활성화.
+
 
         // Todo: 카드뽑기.
 
@@ -74,17 +74,4 @@ public class UIStatus : MonoBehaviour
         gameObject.GetComponent<UISetting>().enabled = true;
     }
 
-    /// <summary>
-    /// KJH => 다음날로 넘어가는 코루틴.
-    /// </summary>
-    /// <param name="delayTime"> 다음날로 넘어갈때 지연시킬 시간.</param>
-    /// <returns></returns>
-    IEnumerator C_NextDay(int delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-        // KJH => 다음날 넘어가는 패널 비활성화 
-        // Text 비활성화
-        OpenCard?.Invoke();
-
-    }
 }

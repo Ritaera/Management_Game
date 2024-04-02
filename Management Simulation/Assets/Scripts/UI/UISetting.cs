@@ -10,14 +10,25 @@ public class UISetting : MonoBehaviour
     private Button _cancel;
     private Scrollbar _scrollbar;
 
+    private void Awake()
+    {
+        // Todo: 자동 컴포넌트 연결 코드 작성하기.
+    }
+
+    private void Start()
+    {
+        _lobby.onClick.AddListener(LobbyButtonClick);
+        _cancel.onClick.AddListener(CancelButtonClick);
+    }
+
     // KJH => 로비버튼 클릭시 호출함수.
-    public void OnLobbyButtonClick()
+    public void LobbyButtonClick()
     {
         // Todo: 로비씬으로 이동.
     }
 
     // KJH => 취소버튼 클릭시 호출 함수.
-    public void OnCancelButtonClick()
+    public void CancelButtonClick()
     {
         // KJH => 설정창을 안보이게 비활성화 처리하기
     }

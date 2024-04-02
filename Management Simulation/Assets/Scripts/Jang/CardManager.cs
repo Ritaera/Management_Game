@@ -13,10 +13,12 @@ public class CardManager : MonoBehaviour
     // testlist = trashlisth
     // trashlist = temp
 
+    private UITurnEnd _cardManager = new UITurnEnd();
+    private UIStatus status = new UIStatus();
+
     private void Start()
     {
-        UIStatus status = new UIStatus();
-        status.OpenCard += () => CardPopUp();
+        status.OpenCard += () => SelectCard();
     }
 
 
@@ -29,11 +31,6 @@ public class CardManager : MonoBehaviour
             Debug.Log(testlist.Count);
             StartCoroutine(SelectCard());
         }
-    }
-
-    public void CardPopUp()
-    {
-        StartCoroutine(SelectCard());
     }
 
 
@@ -51,6 +48,7 @@ public class CardManager : MonoBehaviour
             GameManager.instance.SetStart(scriptable);
 
             // todo => Jang => CardUIManager에 전달
+            _cardManager.GetCardInfo(scriptable);
 
             // Jang => 카드 선택후 삭제 코루틴 실행
             yield return StartCoroutine(RemoveCard(random));
