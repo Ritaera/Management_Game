@@ -39,7 +39,7 @@ public class GameManager : SingletonMonoBase<GameManager>
             gold = Gold;
         }
     }
-    public int Date 
+    public int Date  
     {
         get
         {
