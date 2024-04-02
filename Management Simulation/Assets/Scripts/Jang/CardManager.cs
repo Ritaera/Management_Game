@@ -13,6 +13,13 @@ public class CardManager : MonoBehaviour
     // testlist = trashlisth
     // trashlist = temp
 
+    private void Start()
+    {
+        UIStatus status = new UIStatus();
+        status.OpenCard += () => CardPopUp();
+    }
+
+
     private void Update()
     {
         // Jang => Test 단계 
@@ -23,6 +30,13 @@ public class CardManager : MonoBehaviour
             StartCoroutine(SelectCard());
         }
     }
+
+    public void CardPopUp()
+    {
+        StartCoroutine(SelectCard());
+    }
+
+
     // Jang => 카드 고르는 코루틴 함수
     IEnumerator SelectCard()
     {
@@ -36,7 +50,7 @@ public class CardManager : MonoBehaviour
             // Jang => SingleTon인 GamePlayManager에 instance를 통해 SetStart함수에 scriptable 제공
             GameManager.instance.SetStart(scriptable);
 
-            // todo => Jang => UIManager에 전달
+            // todo => Jang => CardUIManager에 전달
 
             // Jang => 카드 선택후 삭제 코루틴 실행
             yield return StartCoroutine(RemoveCard(random));

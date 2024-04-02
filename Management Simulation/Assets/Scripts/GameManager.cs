@@ -2,6 +2,7 @@ using DiceGame.Singleton;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [Serializable]
@@ -24,47 +25,51 @@ public class GameManager : SingletonMonoBase<GameManager>
     public GameFloat BeliefPoint = new GameFloat();
     public GameFloat CulturePoint = new GameFloat();
     [SerializeField]
-    private int gold = 0;
+    private int _gold = 0;
     [SerializeField]
-    private int date = 0;
-
+    private int _date = 0;
+    private int _sumGold;
     public int Gold 
     {
         get
         {
-            return gold;
+            return _gold;
         }
         set
         {
-            gold = Gold;
+            _gold = value;
         }
     }
     public int Date  
     {
         get
         {
-            return date;
+            return _date;
         }
         set
         {
-            date = Date;
+            _date = value;
+        }
+    }
+    public int SumGold
+    {
+        get
+        {
+            return _sumGold;
+        }
+        set
+        {
+            _sumGold = value;
         }
     }
 
     public int everyTurnGold;
-
     public Action PointUpdate;
 
     override protected void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Update()
-    {
-        Date = 300;
-        PointUpdate?.Invoke();
     }
 
     // Jang => CardScriptableObject Script에서 선택한 ScriptableObject를 받아와 저장하기 위해 리스트 생성
@@ -93,8 +98,8 @@ public class GameManager : SingletonMonoBase<GameManager>
                 valueList.RemoveAt(i);
             }
         }
-        SetGoldValue(gold, everyTurnGold);
-        date--;
+        _date--;
+        SetGoldValue(_gold, everyTurnGold);
     }
 
     // Jang => 게임내의 value값 설정 코루틴
@@ -105,9 +110,10 @@ public class GameManager : SingletonMonoBase<GameManager>
         SafetyPoint.Value += scriptableObjects._cardSafetyAffectValue;
         BeliefPoint.Value += scriptableObjects._cardFaithAffectValue;
         CulturePoint.Value += scriptableObjects._cardCulturalAffectValue;
-        gold += scriptableObjects._cardGoldAffectValue;
+        _gold += scriptableObjects._cardGoldAffectValue;
         scriptableObjects._cardAffectTurn--;
 
+        _sumGold += scriptableObjects._cardGoldAffectValue;
         yield return null;
 
     }
@@ -116,6 +122,6 @@ public class GameManager : SingletonMonoBase<GameManager>
     public void SetGoldValue(int gold, int goldvalue)
     {
         gold += everyTurnGold;
-        //todo => event invoke;
+        PointUpdate?.Invoke();
     }
 }
