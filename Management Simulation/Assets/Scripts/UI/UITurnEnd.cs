@@ -34,7 +34,6 @@ public class UITurnEnd:MonoBehaviour
         _cardTurn = transform.Find("Panel/CardSystem/Button - FrontCard/Turn/Image/Text (TMP) - CardTurn").GetComponent<TMP_Text>();
         _cardSystem = transform.Find("Panel/CardSystem").gameObject;
         _panel = transform.Find("Panel").gameObject;
-
         _nextTurnButton.onClick.AddListener(TurnEndButtonClick);
     }
 
@@ -66,11 +65,8 @@ public class UITurnEnd:MonoBehaviour
         else if (!IsCardAnimationEnd)
         {
             _backCard.fillAmount = 1;
-            // 버튼 비활성화 
-            _backButton.interactable = false;
             // fillAmount 감소 (Time.deltaTime 이용해서)
             StartCoroutine(C_CardOpen());
-            _backButton.interactable = true;
         }
         IsCardAnimationEnd = !IsCardAnimationEnd;
     }
@@ -91,7 +87,11 @@ public class UITurnEnd:MonoBehaviour
         StartCoroutine(C_TurnStart(3));  // 코루틴 시작.
     }
 
-
+    /// <summary>
+    /// 다음날 버튼 클릭시 잠시 기다리는 코루틴
+    /// </summary>
+    /// <param name="delayTime"> 지연시간 </param>
+    /// <returns></returns>
     IEnumerator C_TurnStart(int delayTime)
     {
         yield return new WaitForSeconds(delayTime);
@@ -99,12 +99,18 @@ public class UITurnEnd:MonoBehaviour
         _cardSystem.SetActive(true); // 카드시스템 활성화.
     }
 
+    /// <summary>
+    /// 카드 애니메이션 코루틴
+    /// </summary>
+    /// <returns></returns>
     IEnumerator C_CardOpen()
     {
+        _backButton.interactable = false;
         while (_backCard.fillAmount > 0)
         {
             _backCard.fillAmount -= _cardSpeed;
             yield return new WaitForSeconds(Time.deltaTime);
         }
+        _backButton.interactable = true;
     }
 }

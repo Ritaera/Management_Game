@@ -8,17 +8,26 @@ public class UISetting : MonoBehaviour
 {
     private Button _lobby;
     private Button _cancel;
+    private Button _setting;
     private Scrollbar _scrollbar;
+    private GameObject _panel;
+
 
     private void Awake()
     {
         // Todo: 자동 컴포넌트 연결 코드 작성하기.
+        _lobby = transform.Find("Panel - Setting/Game Button/Button - Lobby").GetComponent<Button>();
+        _cancel = transform.Find("Panel - Setting/Game Button/Button - Cancel").GetComponent<Button>();
+        _setting = transform.Find("Button - Setting").GetComponent<Button>();
+        _scrollbar = transform.Find("Panel - Setting/Sound/Scrollbar - Volume").GetComponent<Scrollbar>();
+        _panel = transform.Find("Panel - Setting").gameObject;
     }
 
     private void Start()
     {
         _lobby.onClick.AddListener(LobbyButtonClick);
         _cancel.onClick.AddListener(CancelButtonClick);
+        _setting.onClick.AddListener(SettingButtonClick);
     }
 
     // KJH => 로비버튼 클릭시 호출함수.
@@ -30,7 +39,7 @@ public class UISetting : MonoBehaviour
     // KJH => 취소버튼 클릭시 호출 함수.
     public void CancelButtonClick()
     {
-        // KJH => 설정창을 안보이게 비활성화 처리하기
+        _panel.SetActive(false);
     }
 
 
@@ -46,4 +55,11 @@ public class UISetting : MonoBehaviour
     {
         // Todo: 사운드 조절 기능 추가하기.
     }
+
+    // KJH =>  설정 버튼 눌렀을때 이 함수 호출.
+    public void SettingButtonClick()
+    {
+        _panel.SetActive(true);
+    }
+
 }

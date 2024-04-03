@@ -9,7 +9,6 @@ public class UIStatus : MonoBehaviour
 {
     private TMP_Text _date;
     private TMP_Text _gold;
-    private Button _setting;
     private Image _happyButton;
     private Image _safetyButton;
     private Image _beliefButton;
@@ -24,12 +23,10 @@ public class UIStatus : MonoBehaviour
     {
         _gold = transform.Find("Status - Date/Text (TMP) - Gold").GetComponent<TMP_Text>(); 
         _date = transform.Find("Status - Date/Text (TMP) - Date").GetComponent<TMP_Text>();
-        _setting = transform.Find("Status - Date/Button - Setting").GetComponent<Button>();
         _happyButton = transform.Find("Status - Point/HappyPoint/Button - Happy - BG/Button - Happy - Slider").GetComponent<Image>();
         _safetyButton = transform.Find("Status - Point/SafetyPoint/Button - Safety - BG/Button - Safety - Slider").GetComponent<Image>();
         _beliefButton = transform.Find("Status - Point/BeliefPoint/Button - Belief - BG/Button - Belief - Slider").GetComponent<Image>();
         _cultureButton = transform.Find("Status - Point/CulturePoint/Button - Culture - BG/Button - Culture - Slider").GetComponent<Image>();
-        _setting.onClick.AddListener(SettingButtonClick);
     }
 
     private void Start()
@@ -49,13 +46,4 @@ public class UIStatus : MonoBehaviour
         _nextDayGold = GameManager.instance.SumGold.ToString();
         _gold.text = "골드 : " + GameManager.instance.Gold.ToString() + $" {_nextDayGold}";
     }
-
-
-
-    // KJH =>  설정 버튼 눌렀을때 이 함수 호출.
-    public void SettingButtonClick()
-    {
-        transform.GetChild(0).gameObject.SetActive(true);
-    }
-
 }
