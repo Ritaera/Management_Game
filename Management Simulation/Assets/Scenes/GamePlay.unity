@@ -15877,69 +15877,9 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 339328847352327288, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_Type
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 339328847352327288, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069784313721266838, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_Type
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069784313721266838, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 1069784313721266838, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_Maskable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069784313721266838, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_FillAmount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069784313721266838, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_FillMethod
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069784313721266838, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_FillOrigin
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069784313721266838, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069784313721266838, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_PreserveAspect
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5509499264246239382, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5509499264246239382, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_Colors.m_ColorMultiplier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5697230498237209470, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_Name
-      value: Text (TMP) - ToDayCard
-      objectReference: {fileID: 0}
     - target: {fileID: 6037174931954678135, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
       propertyPath: m_Name
       value: Canvas - TurnEnd
-      objectReference: {fileID: 0}
-    - target: {fileID: 6037174931954678135, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7230794302039307459, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7431708732185679458, guid: 18c37ddb86e19f04f9eac979ee84ce12, type: 3}
       propertyPath: m_Pivot.x
@@ -16061,7 +16001,7 @@ PrefabInstance:
     - target: {fileID: 6018310665654882105, guid: bc3fa955efbc32742a160cbada6c965d, type: 3}
       propertyPath: _nextTurn
       value: 
-      objectReference: {fileID: 8683003203781473718}
+      objectReference: {fileID: 0}
     - target: {fileID: 6018310665654882105, guid: bc3fa955efbc32742a160cbada6c965d, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -16203,21 +16143,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8514604071298924692, guid: bc3fa955efbc32742a160cbada6c965d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc3fa955efbc32742a160cbada6c965d, type: 3}
---- !u!114 &8683003203781473718 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1883862063809574488, guid: bc3fa955efbc32742a160cbada6c965d, type: 3}
-  m_PrefabInstance: {fileID: 8683003203781473717}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8683003203781473719 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8725351821236506897, guid: bc3fa955efbc32742a160cbada6c965d, type: 3}

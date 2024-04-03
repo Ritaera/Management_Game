@@ -33,7 +33,6 @@ public class CardManager : MonoBehaviour
         }
     }
 
-
     // Jang => 카드 고르는 코루틴 함수
     IEnumerator SelectCard()
     {
