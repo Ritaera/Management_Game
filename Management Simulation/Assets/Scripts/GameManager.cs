@@ -88,7 +88,7 @@ public class GameManager : SingletonMonoBase<GameManager>
         for (int i = 0; i < valueList.Count; i++)
         {
             // Jang => 카드가 영향을 미치는 턴수는 valueList[i]._cardAffectTurn임으로 cardAffectTurn이 0보다 크면 코루틴 실행
-            if (valueList[i]._cardAffectTurn > 0)
+            if (valueList[i].cardAffectTurn > 0)
             {
                 StartCoroutine(CardValueSetGameValue(valueList[i]));
             }
@@ -106,14 +106,14 @@ public class GameManager : SingletonMonoBase<GameManager>
     IEnumerator CardValueSetGameValue(CardScriptableObject scriptableObjects)
     {
         // Jang => Property에 접근하여 set을 통해 값을 계산
-        HappyPoint.Value += scriptableObjects._cardHappyAffectValue;
-        SafetyPoint.Value += scriptableObjects._cardSafetyAffectValue;
-        BeliefPoint.Value += scriptableObjects._cardFaithAffectValue;
-        CulturePoint.Value += scriptableObjects._cardCulturalAffectValue;
-        _gold += scriptableObjects._cardGoldAffectValue;
-        scriptableObjects._cardAffectTurn--;
+        HappyPoint.Value += scriptableObjects.cardHappyAffectValue;
+        SafetyPoint.Value += scriptableObjects.cardSafetyAffectValue;
+        BeliefPoint.Value += scriptableObjects.cardFaithAffectValue;
+        CulturePoint.Value += scriptableObjects.cardCulturalAffectValue;
+        _gold += scriptableObjects.cardGoldAffectValue;
+        scriptableObjects.cardAffectTurn--;
 
-        _sumGold += scriptableObjects._cardGoldAffectValue;
+        _sumGold += scriptableObjects.cardGoldAffectValue;
         yield return null;
 
     }
