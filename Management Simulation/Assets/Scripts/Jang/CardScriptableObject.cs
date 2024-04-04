@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "CardData", menuName = "Create Card Data")]
 public class CardScriptableObject : ScriptableObject
 {
-        public Sprite _cardBackgroundSprite; // 카드 백그라운드 
+        public Image _cardBackgroundSprite; // 카드 백그라운드 
 
-        public Sprite _cardSprite; // 카드 내용의 배경
+        public Image _cardSprite; // 카드 내용의 배경
 
         public int _cardAffectTurn; // 카드가 영향을 미치는 턴 
 
