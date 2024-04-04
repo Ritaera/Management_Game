@@ -28,11 +28,7 @@ public class GameManager : SingletonMonoBase<GameManager>
     private int _gold = 0;
     [SerializeField]
     private int _date = 0;
-
-    [SerializeField]
     private int _sumGold;
-
-
     public int Gold 
     {
         get
@@ -67,6 +63,7 @@ public class GameManager : SingletonMonoBase<GameManager>
         }
     }
 
+    public int everyTurnGold;
     public Action PointUpdate;
 
     override protected void Awake()
@@ -74,12 +71,6 @@ public class GameManager : SingletonMonoBase<GameManager>
         base.Awake();
         DontDestroyOnLoad(gameObject);
     }
-
-    private void Update()
-    {
-        PointUpdate();
-    }
-
 
     // Jang => CardScriptableObject Script에서 선택한 ScriptableObject를 받아와 저장하기 위해 리스트 생성
     [SerializeField] List<CardScriptableObject> valueList = new List<CardScriptableObject>();
@@ -97,7 +88,7 @@ public class GameManager : SingletonMonoBase<GameManager>
         for (int i = 0; i < valueList.Count; i++)
         {
             // Jang => 카드가 영향을 미치는 턴수는 valueList[i]._cardAffectTurn임으로 cardAffectTurn이 0보다 크면 코루틴 실행
-            if (valueList[i].cardAffectTurn > 0)
+            if (valueList[i]._cardAffectTurn > 0)
             {
                 StartCoroutine(CardValueSetGameValue(valueList[i]));
             }
@@ -108,21 +99,21 @@ public class GameManager : SingletonMonoBase<GameManager>
             }
         }
         _date--;
-        SetGoldValue(_gold, SumGold);
+        SetGoldValue(_gold, everyTurnGold);
     }
 
     // Jang => 게임내의 value값 설정 코루틴
     IEnumerator CardValueSetGameValue(CardScriptableObject scriptableObjects)
     {
         // Jang => Property에 접근하여 set을 통해 값을 계산
-        HappyPoint.Value += scriptableObjects.cardHappyAffectValue;
-        SafetyPoint.Value += scriptableObjects.cardSafetyAffectValue;
-        BeliefPoint.Value += scriptableObjects.cardFaithAffectValue;
-        CulturePoint.Value += scriptableObjects.cardCulturalAffectValue;
-        _gold += scriptableObjects.cardGoldAffectValue;
-        scriptableObjects.cardAffectTurn--;
+        HappyPoint.Value += scriptableObjects._cardHappyAffectValue;
+        SafetyPoint.Value += scriptableObjects._cardSafetyAffectValue;
+        BeliefPoint.Value += scriptableObjects._cardFaithAffectValue;
+        CulturePoint.Value += scriptableObjects._cardCulturalAffectValue;
+        _gold += scriptableObjects._cardGoldAffectValue;
+        scriptableObjects._cardAffectTurn--;
 
-        _sumGold += scriptableObjects.cardGoldAffectValue;
+        _sumGold += scriptableObjects._cardGoldAffectValue;
         yield return null;
 
     }
@@ -130,7 +121,7 @@ public class GameManager : SingletonMonoBase<GameManager>
     // 매턴 지급되는 골드, 건물 업그레이드를 통한 업그레이드
     public void SetGoldValue(int gold, int goldvalue)
     {
-        gold += SumGold;
+        gold += everyTurnGold;
         PointUpdate?.Invoke();
     }
 }

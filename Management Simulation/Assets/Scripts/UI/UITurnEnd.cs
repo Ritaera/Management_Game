@@ -13,11 +13,8 @@ public class UITurnEnd:MonoBehaviour
     private Image _frontCard;
     private Button _nextTurnButton;  // 다음날 버튼.
     private TMP_Text _nextDay;  // 다음날 Text
-
     private TMP_Text _cardDescription;  // 카드 설명 Text
     private TMP_Text _cardTurn;  // 카드 턴수 Text
-    private Image _cardImage;
-
     private GameObject _cardSystem;
     private GameObject _panel; 
     private float _cardSpeed = 0.01f;
@@ -33,28 +30,24 @@ public class UITurnEnd:MonoBehaviour
         _frontCard = transform.Find("Panel/CardSystem/Button - FrontCard").GetComponent<Image>();
         _nextDay = transform.Find("Panel/Text (TMP) - NextDay").GetComponent<TMP_Text>();
         _nextTurnButton = transform.Find("Button - TurnEnd").GetComponent<Button>();
-
         _cardDescription = transform.Find("Panel/CardSystem/Button - FrontCard/Description/Image/Text (TMP) - CardDescription").GetComponent<TMP_Text>();
         _cardTurn = transform.Find("Panel/CardSystem/Button - FrontCard/Turn/Image/Text (TMP) - CardTurn").GetComponent<TMP_Text>();
-        _cardImage = transform.Find("").GetComponent<Image>();
-
         _cardSystem = transform.Find("Panel/CardSystem").gameObject;
         _panel = transform.Find("Panel").gameObject;
+        _nextTurnButton.onClick.AddListener(TurnEndButtonClick);
     }
 
     private void Start()
     {
         _backButton.onClick.AddListener(BackCardButtonClick);
-        _nextTurnButton.onClick.AddListener(TurnEndButtonClick);
     }
 
 
     // KJH => 카드매니저 에서 선택된 카드정보를 가져와서 읽을 함수.
     public void GetCardInfo(CardScriptableObject scriptable)
     {
-        _cardDescription.text = scriptable.cardDescription.ToString();
-        _cardTurn.text = scriptable.cardAffectTurn.ToString();
-        _cardImage = scriptable.cardImage;
+        _cardDescription.text = scriptable._cardDescription.ToString();
+        _cardTurn.text = scriptable._cardAffectTurn.ToString();
     }
 
 
