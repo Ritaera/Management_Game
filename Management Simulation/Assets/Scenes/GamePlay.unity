@@ -6029,16 +6029,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HappyPoint:
-    Value: 0
+    Value: 10
   SafetyPoint:
-    Value: 0
+    Value: 20
   BeliefPoint:
-    Value: 0
+    Value: 50
   CulturePoint:
     Value: 0
-  _gold: 0
-  _date: 0
-  everyTurnGold: 0
+  _gold: 10
+  _date: 1
+  _sumGold: 0
   valueList: []
 --- !u!4 &2072258206
 Transform:

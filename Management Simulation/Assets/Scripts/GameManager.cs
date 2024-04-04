@@ -28,7 +28,11 @@ public class GameManager : SingletonMonoBase<GameManager>
     private int _gold = 0;
     [SerializeField]
     private int _date = 0;
+
+    [SerializeField]
     private int _sumGold;
+
+
     public int Gold 
     {
         get
@@ -63,7 +67,6 @@ public class GameManager : SingletonMonoBase<GameManager>
         }
     }
 
-    public int everyTurnGold;
     public Action PointUpdate;
 
     override protected void Awake()
@@ -71,6 +74,12 @@ public class GameManager : SingletonMonoBase<GameManager>
         base.Awake();
         DontDestroyOnLoad(gameObject);
     }
+
+    private void Update()
+    {
+        PointUpdate();
+    }
+
 
     // Jang => CardScriptableObject Script에서 선택한 ScriptableObject를 받아와 저장하기 위해 리스트 생성
     [SerializeField] List<CardScriptableObject> valueList = new List<CardScriptableObject>();
@@ -99,7 +108,7 @@ public class GameManager : SingletonMonoBase<GameManager>
             }
         }
         _date--;
-        SetGoldValue(_gold, everyTurnGold);
+        SetGoldValue(_gold, SumGold);
     }
 
     // Jang => 게임내의 value값 설정 코루틴
@@ -121,7 +130,7 @@ public class GameManager : SingletonMonoBase<GameManager>
     // 매턴 지급되는 골드, 건물 업그레이드를 통한 업그레이드
     public void SetGoldValue(int gold, int goldvalue)
     {
-        gold += everyTurnGold;
+        gold += SumGold;
         PointUpdate?.Invoke();
     }
 }
