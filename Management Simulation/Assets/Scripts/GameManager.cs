@@ -31,15 +31,9 @@ public class GameManager : SingletonMonoBase<GameManager>
     private int _gold = 0;
     [SerializeField]
     private int _date = 0;
-<<<<<<< Updated upstream
 
     [SerializeField]
-    private int _sumGold;
-
-
-=======
     private int _nextTrunGold;
->>>>>>> Stashed changes
     public int Gold 
     {
         get
@@ -108,13 +102,8 @@ public class GameManager : SingletonMonoBase<GameManager>
                 valueList.RemoveAt(i);
             }
         }
-<<<<<<< Updated upstream
-        _date--;
-        SetGoldValue(_gold, SumGold);
-=======
         _date++;
-        SetGoldValue(_gold, everyTurnGold);
->>>>>>> Stashed changes
+        SetGoldValue(_gold, nextTurnGold);
     }
 
     // Jang => 게임내의 value값 설정 코루틴
@@ -128,11 +117,7 @@ public class GameManager : SingletonMonoBase<GameManager>
         _gold += scriptableObjects.cardGoldAffectValue;
         scriptableObjects.cardAffectTurn--;
 
-<<<<<<< Updated upstream
-        _sumGold += scriptableObjects.cardGoldAffectValue;
-=======
-        _nextTrunGold += scriptableObjects._cardGoldAffectValue;
->>>>>>> Stashed changes
+        _nextTrunGold += scriptableObjects.cardGoldAffectValue;
         yield return null;
 
     }
@@ -140,7 +125,7 @@ public class GameManager : SingletonMonoBase<GameManager>
     // 매턴 지급되는 골드, 건물 업그레이드를 통한 업그레이드
     public void SetGoldValue(int gold, int goldvalue)
     {
-        gold += SumGold;
+        gold += nextTurnGold;
         PointUpdate?.Invoke();
     }
 }
