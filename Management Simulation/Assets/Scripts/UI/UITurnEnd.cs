@@ -1,5 +1,4 @@
-﻿using Jang.Player;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -25,8 +24,8 @@ public class UITurnEnd:MonoBehaviour
     private float _cardSpeed = 0.01f;
 
     private bool IsCardAnimationEnd = false;
-    private PlayerController2 _playerController = new PlayerController2();
 
+    [SerializeField]private PlayerController2 _playerController;
 
     private void Awake()
     {
@@ -110,7 +109,6 @@ public class UITurnEnd:MonoBehaviour
         _nextDay.gameObject.SetActive(true);  // 다음날 Text 활성화.
         _nextTurnButton.gameObject.SetActive(false);  // 다음날 버튼 비활성화.
         StartCoroutine(C_TurnStart(3));  // 코루틴 시작.
-        _playerController.ResetCharacterSpawn();
     }
 
     /// <summary>
