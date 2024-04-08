@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Jang.Player;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static SceneManagers;
 
 
 public class UITurnEnd:MonoBehaviour
@@ -23,7 +25,7 @@ public class UITurnEnd:MonoBehaviour
     private float _cardSpeed = 0.01f;
 
     private bool IsCardAnimationEnd = false;
-
+    private PlayerController2 _playerController = new PlayerController2();
 
 
     private void Awake()
@@ -61,7 +63,6 @@ public class UITurnEnd:MonoBehaviour
     // KJH => 카드뒷면 버튼을 클릭했을시, 발생할 fillAmount 애니메이션.
     public void BackCardButtonClick()
     {
-        // Todo: 버튼클릭시, Time.deltaTiem 을 이용해 아래에서 위로 카드뒷면이 사라지는 효과 연출 코드 작성.
         // 애니메이션 진행중에는 버튼 클릭이 비활성화 해야함. 2번째 버튼클릭을 한다면, 다음턴 실행.
         if (IsCardAnimationEnd)
         {
@@ -82,16 +83,34 @@ public class UITurnEnd:MonoBehaviour
     // KJH => 다음날 버튼 눌렀을때 이 함수 호출.
     public void TurnEndButtonClick()
     {
-        if (GameManager.instance.Date > 30)
+        if (GameManager.instance.Date >= 30)
         {
-            //Todo: 게임 종료씬 
+            SceneManagers.LoadScenes(MoveScene.EndGame);
         }
+        // Todo: 게임 종료 조건 추가
+        if(GameManager.instance.HappyPoint.Value <= 0)
+        {
+
+        }
+        else if(GameManager.instance.SafetyPoint.Value <= 0)
+        {
+
+        }
+        else if(GameManager.instance.Gold <= 0)
+        {
+
+        }
+
+
+
+
 
         _panel.SetActive(true);  // 캠버스 활성화.
         _cardSystem.SetActive(false); // 카드시스템 비활성화.
         _nextDay.gameObject.SetActive(true);  // 다음날 Text 활성화.
         _nextTurnButton.gameObject.SetActive(false);  // 다음날 버튼 비활성화.
         StartCoroutine(C_TurnStart(3));  // 코루틴 시작.
+        _playerController.ResetCharacterSpawn();
     }
 
     /// <summary>

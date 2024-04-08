@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
+
+
 [Serializable]
 public class GameFloat
 {
@@ -19,7 +22,7 @@ public class GameFloat
 
 public class GameManager : SingletonMonoBase<GameManager>
 {
-
+    
     public GameFloat HappyPoint = new GameFloat();
     public GameFloat SafetyPoint = new GameFloat();
     public GameFloat BeliefPoint = new GameFloat();
@@ -28,11 +31,15 @@ public class GameManager : SingletonMonoBase<GameManager>
     private int _gold = 0;
     [SerializeField]
     private int _date = 0;
+<<<<<<< Updated upstream
 
     [SerializeField]
     private int _sumGold;
 
 
+=======
+    private int _nextTrunGold;
+>>>>>>> Stashed changes
     public int Gold 
     {
         get
@@ -50,21 +57,15 @@ public class GameManager : SingletonMonoBase<GameManager>
         {
             return _date;
         }
-        set
-        {
-            _date = value;
-        }
+        private set { }
     }
-    public int SumGold
+    public int nextTurnGold
     {
         get
         {
-            return _sumGold;
+            return _nextTrunGold;
         }
-        set
-        {
-            _sumGold = value;
-        }
+        private set { }
     }
 
     public Action PointUpdate;
@@ -107,8 +108,13 @@ public class GameManager : SingletonMonoBase<GameManager>
                 valueList.RemoveAt(i);
             }
         }
+<<<<<<< Updated upstream
         _date--;
         SetGoldValue(_gold, SumGold);
+=======
+        _date++;
+        SetGoldValue(_gold, everyTurnGold);
+>>>>>>> Stashed changes
     }
 
     // Jang => 게임내의 value값 설정 코루틴
@@ -122,7 +128,11 @@ public class GameManager : SingletonMonoBase<GameManager>
         _gold += scriptableObjects.cardGoldAffectValue;
         scriptableObjects.cardAffectTurn--;
 
+<<<<<<< Updated upstream
         _sumGold += scriptableObjects.cardGoldAffectValue;
+=======
+        _nextTrunGold += scriptableObjects._cardGoldAffectValue;
+>>>>>>> Stashed changes
         yield return null;
 
     }

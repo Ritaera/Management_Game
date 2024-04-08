@@ -43,7 +43,7 @@ public class UIStatus : MonoBehaviour
         _beliefButton.fillAmount = GameManager.instance.BeliefPoint.Value / GameManager.instance.BeliefPoint.Max;
         _cultureButton.fillAmount = GameManager.instance.CulturePoint.Value / GameManager.instance.CulturePoint.Max;
         _date.text = "³¯Â¥ : " + GameManager.instance.Date.ToString();
-        _nextDayGold = GameManager.instance.SumGold.ToString();
+        _nextDayGold = GameManager.instance.nextTurnGold.ToString();
         _gold.text = "°ñµå : " + GameManager.instance.Gold.ToString() + $" {_nextDayGold}";
     }
 }

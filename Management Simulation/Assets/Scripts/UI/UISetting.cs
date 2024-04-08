@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static SceneManagers;
 
 
-public class UISetting : MonoBehaviour
+public class UISetting : MonoBehaviour, SceneManagers
 {
     private Button _lobby;
     private Button _cancel;
@@ -15,7 +16,6 @@ public class UISetting : MonoBehaviour
 
     private void Awake()
     {
-        // Todo: 자동 컴포넌트 연결 코드 작성하기.
         _lobby = transform.Find("Panel - Setting/Game Button/Button - Lobby").GetComponent<Button>();
         _cancel = transform.Find("Panel - Setting/Game Button/Button - Cancel").GetComponent<Button>();
         _setting = transform.Find("Button - Setting").GetComponent<Button>();
@@ -33,7 +33,7 @@ public class UISetting : MonoBehaviour
     // KJH => 로비버튼 클릭시 호출함수.
     public void LobbyButtonClick()
     {
-        // Todo: 로비씬으로 이동.
+        SceneManagers.LoadScenes(MoveScene.Main);
     }
 
     // KJH => 취소버튼 클릭시 호출 함수.

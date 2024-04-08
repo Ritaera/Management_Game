@@ -46,7 +46,7 @@ public class CardManager : MonoBehaviour
             // Jang => SingleTon인 GamePlayManager에 instance를 통해 SetStart함수에 scriptable 제공
             GameManager.instance.SetStart(scriptable);
 
-            // todo => Jang => CardUIManager에 전달
+            // Jang => CardUIManager에 전달
             _cardManager.GetCardInfo(scriptable);
 
             // Jang => 카드 선택후 삭제 코루틴 실행
