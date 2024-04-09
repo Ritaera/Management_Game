@@ -23,6 +23,8 @@ public class PlayerController2 : MonoBehaviour
     #region Jump
     private float _jump = 5.0f;
     private bool _jumpstate; // Jang => 점프 여부
+
+    [SerializeField]
     private LayerMask _groundLayer; // 착지 레이어
     private bool _onGround = false; // 땅위에 있는지 여부
     #endregion
@@ -38,8 +40,8 @@ public class PlayerController2 : MonoBehaviour
     {
         rbody = this.GetComponent<Rigidbody2D>();
         _groundLayer = (1 << GameObject.Find("Map").layer);
-        //_playerMaxPosition = GameObject.Find("PlayerMaxPosition").GetComponent<Transform>();
-        //_playerMinPosition = GameObject.Find("PlayerMinPosition").GetComponent<Transform>();
+        _playerMaxPosition = GameObject.Find("PlayerMaxPosition").GetComponent<Transform>();
+        _playerMinPosition = GameObject.Find("PlayerMinPosition").GetComponent<Transform>();
     }
 
     void Update()
