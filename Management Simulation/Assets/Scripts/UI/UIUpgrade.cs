@@ -4,23 +4,31 @@ using UnityEngine;
 
 public class UIUpgrade : MonoBehaviour
 {
-    CharacterInfo characterInfo = new CharacterInfo();
+    PlayerController2 _playerController;
 
+
+    private void Awake()
+    {
+        if (_playerController == null)
+        {
+            _playerController=FindFirstObjectByType<PlayerController2>();
+        }
+    }
     public void Upgrade()
     {
-        if (characterInfo.npcName == "sam smith")
+        if (_playerController.HitName == "sam smith")
         {
             //Todo: 대장간 작업 처리.
         }
-        else if (characterInfo.npcName == "maria")
+        else if (_playerController.HitName == "maria")
         {
             //Todo: 성당처리
         }
-        else if(characterInfo.npcName == "수상한 미모의 여종업원")
+        else if(_playerController.HitName == "수상한 미모의 여종업원")
         {
             //Todo: 모럼가길드
         }
-        else if (characterInfo.npcName == "수상한 미모의 하녀")
+        else if (_playerController.HitName == "수상한 미모의 하녀")
         {
             //Todo: 성
         }

@@ -32,9 +32,24 @@ public class PlayerController2 : MonoBehaviour
     #region raycast
     Vector2 worldPoint;
     RaycastHit2D hit;
+
+    RaycastHit2D hit2;
     #endregion
 
+    private string _hitName;
 
+    public string HitName
+    {
+        get
+        {
+            return _hitName;
+        }
+
+        private set
+        {
+
+        }
+    }
 
     private void Awake()
     {
@@ -81,11 +96,11 @@ public class PlayerController2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
 
-            RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector3.back, 1f, 1 << LayerMask.NameToLayer("npc"));
+            hit2 = Physics2D.Raycast(transform.position, Vector3.back, 1f, 1 << LayerMask.NameToLayer("npc"));
 
             if (hit2.collider != null)
             {
-                Debug.Log(hit2.collider.name);
+                _hitName = hit2.collider.name;
             }
         }
 

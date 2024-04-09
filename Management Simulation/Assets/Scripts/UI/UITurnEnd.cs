@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using static SceneManagers;
 
 
-public class UITurnEnd:MonoBehaviour
+public class UITurnEnd : MonoBehaviour
 {
     private Image _backCard;
     private Button _backButton;
@@ -20,15 +20,22 @@ public class UITurnEnd:MonoBehaviour
     private Image _cardImage;
 
     private GameObject _cardSystem;
-    private GameObject _panel; 
+    private GameObject _panel;
     private float _cardSpeed = 0.01f;
 
     private bool IsCardAnimationEnd = false;
 
-    [SerializeField]private PlayerController2 _playerController;
+    public Action OpenCard; // 카드매니저 에서 사용할 액션.
+
+    public CardManager cardManager;
 
     private void Awake()
     {
+        if (cardManager == null)
+        {
+            cardManager = FindFirstObjectByType<CardManager>();
+        }
+
         _backCard = transform.Find("Panel/CardSystem/Button - FrontCard/Button - BackCard").GetComponent<Image>();
         _backButton = transform.Find("Panel/CardSystem/Button - FrontCard/Button - BackCard").GetComponent<Button>();
         _frontCard = transform.Find("Panel/CardSystem/Button - FrontCard").GetComponent<Image>();
@@ -53,8 +60,12 @@ public class UITurnEnd:MonoBehaviour
     // KJH => 카드매니저 에서 선택된 카드정보를 가져와서 읽을 함수.
     public void GetCardInfo(CardScriptableObject scriptable)
     {
-        _cardDescription.text = scriptable.cardDescription.ToString();
-        _cardTurn.text = scriptable.cardAffectTurn.ToString();
+        _cardDescription.text = scriptable.cardDescription;
+        _cardTurn.text = $"<color=black>턴수: {(scriptable.cardAffectTurn > 0 ? "+" : "")}{scriptable.cardAffectTurn}</color><color=red> 신앙: {(scriptable.cardFaithAffectValue > 0 ? "+" : "")}{scriptable.cardFaithAffectValue} 문화: {(scriptable.cardCulturalAffectValue > 0 ? "+" : "")}{scriptable.cardCulturalAffectValue}\n골드: {(scriptable.cardGoldAffectValue> 0 ? "+" : "")}{scriptable.cardGoldAffectValue} 치안: {(scriptable.cardSafetyAffectValue> 0 ? "+" : "")}{scriptable.cardSafetyAffectValue} 행복: {(scriptable.cardHappyAffectValue> 0 ? "+" : "")}{scriptable.cardHappyAffectValue}</color>";
+         
+        //_cardTurn.text = "턴수:" + scriptable.cardAffectTurn.ToString() + "신앙:" + scriptable.cardFaithAffectValue.ToString() +
+        //                 "문화:" + scriptable.cardCulturalAffectValue.ToString() + "골드:" + scriptable.cardGoldAffectValue.ToString() +
+        //                 "치안:" + scriptable.cardSafetyAffectValue.ToString() + "행복:" + scriptable.cardHappyAffectValue.ToString();
         _cardImage = scriptable.cardImage;
     }
 
@@ -82,29 +93,14 @@ public class UITurnEnd:MonoBehaviour
     // KJH => 다음날 버튼 눌렀을때 이 함수 호출.
     public void TurnEndButtonClick()
     {
-        if (GameManager.instance.Date >= 30)
+        if (GameManager.instance.Date > 30 || GameManager.instance.HappyPoint.Value <= 0 || 
+            GameManager.instance.SafetyPoint.Value <= 0 || GameManager.instance.Gold <= 0)
         {
             SceneManagers.LoadScenes(MoveScene.EndGame);
         }
-        // Todo: 게임 종료 조건 추가
-        if(GameManager.instance.HappyPoint.Value <= 0)
-        {
-
-        }
-        else if(GameManager.instance.SafetyPoint.Value <= 0)
-        {
-
-        }
-        else if(GameManager.instance.Gold <= 0)
-        {
-
-        }
-
-
-
-
 
         _panel.SetActive(true);  // 캠버스 활성화.
+        cardManager.StartC();
         _cardSystem.SetActive(false); // 카드시스템 비활성화.
         _nextDay.gameObject.SetActive(true);  // 다음날 Text 활성화.
         _nextTurnButton.gameObject.SetActive(false);  // 다음날 버튼 비활성화.

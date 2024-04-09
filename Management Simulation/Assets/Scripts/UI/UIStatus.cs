@@ -13,7 +13,6 @@ public class UIStatus : MonoBehaviour
     private Image _safetyButton;
     private Image _beliefButton;
     private Image _cultureButton;
-    public Action OpenCard; // 카드매니저 에서 사용할 액션.
 
     // 다음턴 추가될 골드 표시.
     private string _nextDayGold;

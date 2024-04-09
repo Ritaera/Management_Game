@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a2b314930fe8343b5468d5be84e64f, type: 3}
+  m_Name: CardData 3
+  m_EditorClassIdentifier: 
+  cardBackgroundImage: {fileID: 0}
+  cardImage: {fileID: 0}
+  cardAffectTurn: 5
+  cardFaithAffectValue: 0
+  cardCulturalAffectValue: 0
+  cardGoldAffectValue: 30
+  cardSafetyAffectValue: -3
+  cardHappyAffectValue: 2
+  cardDescription: "\uBAA8\uD5D8\uAC00 \uAE38\uB4DC\uC758 \uBC1C\uD45C\uC5D0 \uB530\uB974\uBA74
+    \uC0B0 \uC911\uD131 \uC5B4\uB518\uAC00\uC5D0 \uB3D9\uAD74\uC774 \uC788\uB2E4\uACE0
+    \uD569\uB2C8\uB2E4.          \uACFC\uAC10\uD55C \uD22C\uC790\uC640 \uBE60\uB978
+    \uACB0\uC815\uB355\uC5D0 \uB3D9\uAD74 \uC18D \uAE08\uB9E5\uC744 \uCC3E\uC544
+    \uAE08\uC744 \uC0DD\uC0B0\uD558\uAE30 \uC2DC\uC791\uD569\uB2C8\uB2E4.        "
