@@ -8293,7 +8293,7 @@ GameObject:
   - component: {fileID: 2028467649}
   - component: {fileID: 2028467648}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (TMP) -Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8607,6 +8607,7 @@ MonoBehaviour:
   cardTurns: 
   _nextTrunGold: 0
   valueList: []
+  upgradeList: []
 --- !u!4 &2072258206
 Transform:
   m_ObjectHideFlags: 0
@@ -19423,6 +19424,10 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2468471058360906226, guid: c6e298687fa5af7438ab9e9f62113fd4, type: 3}
+      propertyPath: m_text
+      value: "\uAC15\uD654\uC18C\uC758 \uBD88\uC744 \uB354 \uAC15\uD558\uAC8C \uB9CC\uB4ED\uB2C8\uB2E4."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468471058360906226, guid: c6e298687fa5af7438ab9e9f62113fd4, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: fcc522e9e76f7944c99d1365e5577335, type: 2}
@@ -19485,6 +19490,10 @@ PrefabInstance:
     - target: {fileID: 4234594235661743202, guid: c6e298687fa5af7438ab9e9f62113fd4, type: 3}
       propertyPath: m_Name
       value: Panel - PopUpBase
+      objectReference: {fileID: 0}
+    - target: {fileID: 4234594235661743202, guid: c6e298687fa5af7438ab9e9f62113fd4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6892606602011637696, guid: c6e298687fa5af7438ab9e9f62113fd4, type: 3}
       propertyPath: m_Name
