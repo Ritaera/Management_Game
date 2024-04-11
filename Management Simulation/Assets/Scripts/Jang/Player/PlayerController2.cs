@@ -33,7 +33,7 @@ namespace Jang.Player
         #region raycast
         Vector2 worldPoint;
         RaycastHit2D hit;
-#endregion
+        #endregion
 
         private void Awake()
         {
@@ -77,17 +77,16 @@ namespace Jang.Player
                 }
             }
 
-            //if (Input.GetKeyDown(KeyCode.F))
-            //{
-            //    playerPoint = Camera.main.ScreenToWorldPoint(transform.position);
+            if (Input.GetKeyDown(KeyCode.G))
+            {
 
-            //    RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector2.zero);
+                RaycastHit2D hit2 = Physics2D.Raycast(transform.position, Vector3.back, 1f, 1<<LayerMask.NameToLayer("npc"));
 
-            //    if (hit2.collider != null)
-            //    {
-            //        Debug.Log(hit2.collider.name);
-            //    }
-            //}
+                if (hit2.collider != null)
+                {
+                    Debug.Log(hit2.collider.name);
+                }
+            }
 
 
         }
@@ -144,6 +143,11 @@ namespace Jang.Player
             }
             yield return null;
 
+        }
+
+        public void PlayerReset()
+        {
+            transform.position = new Vector2(0, 0);
         }
 
     }

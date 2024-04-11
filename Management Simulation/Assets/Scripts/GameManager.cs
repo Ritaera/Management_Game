@@ -121,7 +121,7 @@ public class GameManager : SingletonMonoBase<GameManager>
     // 매턴 지급되는 골드, 건물 업그레이드를 통한 업그레이드
     public void SetGoldValue(int gold, int goldvalue)
     {
-        gold += everyTurnGold;
+        everyTurnGold += gold;
         PointUpdate?.Invoke();
     }
 }
