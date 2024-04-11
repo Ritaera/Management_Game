@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Jang.Player;
 
 public class MainCamera : MonoBehaviour
 {
