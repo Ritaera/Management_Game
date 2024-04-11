@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 
+using Random = UnityEngine.Random;
+
 public class CardManager : MonoBehaviour
 {
     // Jang => 카드 스크립터블 리스트 생성
-    public List<CardScriptableObject> testlist = new List<CardScriptableObject>();
+    public List<CardScriptableObject> cardDataList = new List<CardScriptableObject>();
     // carddata , listindex 
     // listindex -> random(0,30);
     // temp = testlist 
@@ -17,6 +19,11 @@ public class CardManager : MonoBehaviour
 
     private void Start()
     {
+        foreach (var card in CardDataManager.Instance.cardData)
+        {
+            cardDataList.Add(card);
+        }
+
         if (_cardManager == null)
         {
             _cardManager = FindFirstObjectByType<UITurnEnd>();
@@ -48,11 +55,11 @@ public class CardManager : MonoBehaviour
     IEnumerator SelectCard()
     {
         // Jang => random값 설정
-        int random = UnityEngine.Random.Range(0, testlist.Count);
+        int random = Random.Range(0, cardDataList.Count);
         // Jang => 코드 가독성 위해서 var타입으로 설정
-        var scriptable = testlist[random];
+        var scriptable = cardDataList[random];
 
-        if (testlist.Count > 0)
+        if (cardDataList.Count > 0)
         {
             // Jang => SingleTon인 GamePlayManager에 instance를 통해 SetStart함수에 scriptable 제공
             GameManager.instance.SetStart(scriptable);
@@ -76,7 +83,7 @@ public class CardManager : MonoBehaviour
     IEnumerator RemoveCard(int value)
     {
         // Jang => testlist에서 value index값 삭제
-        testlist.RemoveAt(value);
+        cardDataList.RemoveAt(value);
         yield return null;
     }
 } 

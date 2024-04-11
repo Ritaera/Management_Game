@@ -11,6 +11,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController2 : MonoBehaviour
 {
+
+    UIUpgrade _uIUpgrade;
+
+
     #region Movement
     Rigidbody2D rbody;
     float axisH = 0f;
@@ -32,7 +36,7 @@ public class PlayerController2 : MonoBehaviour
     RaycastHit2D hit2;
     #endregion
 
-    private string _hitName;
+    private string _hitName = "";
 
     public string HitName
     {
@@ -50,6 +54,13 @@ public class PlayerController2 : MonoBehaviour
 
     private void Awake()
     {
+        if (_uIUpgrade == null)
+        {
+            _uIUpgrade = FindFirstObjectByType<UIUpgrade>();
+        }
+
+
+
         rbody = this.GetComponent<Rigidbody2D>();
         _groundLayer = (1 << GameObject.Find("Map").layer);
         _playerMaxPosition = GameObject.Find("PlayerMaxPosition").GetComponent<Transform>();
@@ -99,6 +110,8 @@ public class PlayerController2 : MonoBehaviour
             if (hit2.collider != null)
             {
                 _hitName = hit2.collider.name;
+                Debug.Log(HitName);
+                _uIUpgrade.Upgrade();
             }
         }
 
