@@ -86,6 +86,7 @@ public class GameManager : SingletonMonoBase<GameManager>
 
     // Jang => CardScriptableObject Script에서 선택한 ScriptableObject를 받아와 저장하기 위해 리스트 생성
     [SerializeField] List<CardScriptableObject> valueList = new List<CardScriptableObject>();
+    [SerializeField] List<UpgradeScriptableObject> upgradeList = new List<UpgradeScriptableObject>();
 
     // Jang => CardScriptableObject에서 instance 호출을 통해 Coroutine을 하려했으나 불가능해서
     // 새로운 함수를 생성 후 내부에서 코루틴 호출
@@ -111,10 +112,23 @@ public class GameManager : SingletonMonoBase<GameManager>
                 valueList.RemoveAt(i);
             }
         }
-        _date++;
+
+        for (int i = 0; i < upgradeList.Count; i++)
+
+            _date++;
         SetGoldValue(_gold, nextTurnGold);
     }
 
+    public void UpGrade(UpgradeScriptableObject upgradeScriptableObject)
+    {
+        HappyPoint.Value += upgradeScriptableObject.upGradeHappyAffectValue;
+        SafetyPoint.Value += upgradeScriptableObject.upGradeSafetyAffectValue;
+        BeliefPoint.Value += upgradeScriptableObject.upGradeFaithAffectValue;
+        CulturePoint.Value += upgradeScriptableObject.upGradeCulturalAffectValue;
+        _gold += upgradeScriptableObject.upGradeGold;
+        _nextTrunGold += upgradeScriptableObject.upGradeEveryTurnGold;
+
+    }
     // Jang => 게임내의 value값 설정 코루틴
     IEnumerator CardValueSetGameValue(CardScriptableObject scriptableObjects, int index)
     {

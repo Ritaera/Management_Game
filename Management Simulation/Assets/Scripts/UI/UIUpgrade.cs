@@ -1,40 +1,64 @@
-ï»¿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class UIUpgrade : MonoBehaviour
 {
-    PlayerController2 _playerController;
+    private GameObject _popUpBase; // ºñÈ°¼ºÈ­ ½ÃÅ³ À§Ä¡
+    private TMP_Text _upgradeDescription; // °­È­ ¼³¸í ¶ç¿ï TMP ÅØ½ºÆ®
+    private TMP_Text _upgradePoint; // °­È­ ¼öÄ¡ ¶ç¿ï TMP ÅØ½ºÆ®
+    private TMP_Text _upgradeCost; // °­È­ ºñ¿ë ¶ç¿ï TMP ÅØ½ºÆ®
+    private Button _accapt; // °­È­¼ö¶ô ¹öÆ°
+    private Button _cancel; // °­È­Ãë¼Ò ¹öÆ°
 
+    public GameObject PopUpBase
+    {
+        get
+        {
+            return _popUpBase;
+        }
+        set
+        {
+            _popUpBase = value;
+        }
+    }
+
+    public UpgradeScriptableObject upgradeScriptableObject;
 
     private void Awake()
     {
-        if (_playerController == null)
+        if (upgradeScriptableObject == null)
         {
-            _playerController=FindFirstObjectByType<PlayerController2>();
+            upgradeScriptableObject = FindFirstObjectByType<UpgradeScriptableObject>();
         }
+
+        _popUpBase = transform.Find("Panel - PopUpBase").GetComponent<GameObject>();
+        _upgradeDescription = transform.Find("Panel - PopUpBase/Image - Chat/Text (TMP) - Description").GetComponent<TMP_Text>();
+        _upgradePoint = transform.Find("Panel - PopUpBase/Image - Chat/Text (TMP) -  Plus").GetComponent<TMP_Text>();
+        _upgradeCost = transform.Find("Panel - PopUpBase/Image - Chat/Text(TMP) - Cost").GetComponent<TMP_Text>();
+        _accapt = transform.Find("Panel - PopUpBase/Image - Chat/Button - Accapt").GetComponent<Button>(); 
+        _cancel = transform.Find("Panel - PopUpBase/Image - Chat/Button - Cancel").GetComponent<Button>();
     }
-    public void Upgrade()
+
+    private void Start()
     {
-        if (_playerController.HitName == "sam smith")
-        {
-            //Todo: ëŒ€ì¥ê°„ ì‘ì—… ì²˜ë¦¬.
-        }
-        else if (_playerController.HitName == "maria")
-        {
-            //Todo: ì„±ë‹¹ì²˜ë¦¬
-        }
-        else if(_playerController.HitName == "ìˆ˜ìƒí•œ ë¯¸ëª¨ì˜ ì—¬ì¢…ì—…ì›")
-        {
-            //Todo: ëª¨ëŸ¼ê°€ê¸¸ë“œ
-        }
-        else if (_playerController.HitName == "ìˆ˜ìƒí•œ ë¯¸ëª¨ì˜ í•˜ë…€")
-        {
-            //Todo: ì„±
-        }
-        else
-        {
-            //Todo: ì€í–‰
-        }
+        _accapt.onClick.AddListener(AccaptButtonClick);
+        _cancel.onClick.AddListener(CancelButtonClick);
+    }
+
+    public void AccaptButtonClick()
+    {
+        _upgradeDescription.text = upgradeScriptableObject.upGradeDescription;  // ¾÷±×·¹ÀÌµå Á¤º¸.
+
+        _upgradePoint.text = $"<color=yellow>¸ÅÅÏ °ñµå : {upgradeScriptableObject.upGradeEveryTurnGold}</color> / <color=pink>Çàº¹µµ : {upgradeScriptableObject.upGradeHappyAffectValue}</color> / <color=blue>Ä¡¾È : {upgradeScriptableObject.upGradeSafetyAffectValue}</color> / <color=white>½Å¾Ó : {upgradeScriptableObject.upGradeFaithAffectValue}</color> / <color=purple>¹®È­ : {upgradeScriptableObject.upGradeCulturalAffectValue}</color>";
+        
+        _upgradeCost.text = $"ºñ¿ë : {upgradeScriptableObject.upGradeGold}";
+    }
+    public void CancelButtonClick()
+    {
+        _popUpBase.SetActive(false);
     }
 }

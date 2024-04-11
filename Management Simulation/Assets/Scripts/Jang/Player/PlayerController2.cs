@@ -8,7 +8,6 @@ using UnityEngine;
 // 해당 속성은 이 스크립트를 연결할 때 작성한 형태의 컴포넌트를 요구함.
 // 이 속성을 가지고 있으면 우리가 작성한 형태의 컴포넌트를 인스펙터에서 제거 할 수 없다.
 // 이 스크립트 연결시 인스펙터에 해당 컴포넌트가 없을 경우 자동으로 연결
-
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController2 : MonoBehaviour
 {
@@ -23,8 +22,6 @@ public class PlayerController2 : MonoBehaviour
     #region Jump
     private float _jump = 5.0f;
     private bool _jumpstate; // Jang => 점프 여부
-
-    [SerializeField]
     private LayerMask _groundLayer; // 착지 레이어
     private bool _onGround = false; // 땅위에 있는지 여부
     #endregion
@@ -32,7 +29,6 @@ public class PlayerController2 : MonoBehaviour
     #region raycast
     Vector2 worldPoint;
     RaycastHit2D hit;
-
     RaycastHit2D hit2;
     #endregion
 
@@ -51,6 +47,7 @@ public class PlayerController2 : MonoBehaviour
         }
     }
 
+
     private void Awake()
     {
         rbody = this.GetComponent<Rigidbody2D>();
@@ -62,7 +59,7 @@ public class PlayerController2 : MonoBehaviour
     void Update()
     {
         // Jang => Horizontal의 경우 방향키를 입력하면 -1, 0, 1로 값을 나타내줌
-        axisH = Input.GetAxisRaw("Horizontal");
+        axisH = Input.GetAxis("Horizontal");
 
         // Jang => Asset/ProjectSettings 의 InputManager의 Jump 키워드의 경우 Space 로 설정되어있음
         _jumpstate = Input.GetButtonDown("Jump");
@@ -70,6 +67,7 @@ public class PlayerController2 : MonoBehaviour
         // Jang => axisH가 0이 아닌 경우는 방향키의 입력이 들어왔을 때
         if (axisH != 0)
         {
+     
             // Jang => Move Coroutine 호출
             StartCoroutine(Move());
         }
@@ -110,14 +108,16 @@ public class PlayerController2 : MonoBehaviour
     IEnumerator Move()
     {
         // Jang => axisH 값에 따라서 캐릭터의 localScale을 통해 좌우 반전
-        if (axisH > 0.0f)
+        if (axisH >= 0.0f)
         {
-            transform.localScale = new Vector2(1, 1);
+            transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
         }
         else if (axisH < 0.0f)
         {
-            transform.localScale = new Vector2(-1, 1);
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+
         }
+
 
         if (transform.position.x > _playerMaxPosition.position.x)
         {
@@ -145,7 +145,7 @@ public class PlayerController2 : MonoBehaviour
     {
         // Jang => 현재 점프를 땅에 붙어있는 상태에서만 가능하도록 만들기 위하여 
         // Raycast를 사용하여 GroundLayer를 감지한 뒤 true / false 반환
-        _onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 1.5f), _groundLayer);
+        _onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.5f), _groundLayer);
 
 
         Debug.Log(_onGround);
@@ -161,4 +161,12 @@ public class PlayerController2 : MonoBehaviour
 
     }
 
+    public void PlayerReset()
+    {
+        transform.position = new Vector2(0, 0);
+    }
+
+
+
 }
+
