@@ -9,20 +9,17 @@ public class UIStatus : MonoBehaviour
 {
     private TMP_Text _date;
     private TMP_Text _gold;
+    private TMP_Text _nextUpDown;
     private Image _happyButton;
     private Image _safetyButton;
     private Image _beliefButton;
     private Image _cultureButton;
-    public Action OpenCard; // 카드매니저 에서 사용할 액션.
-
-    // 다음턴 추가될 골드 표시.
-    private string _nextDayGold;
-
 
     private void Awake()
     {
         _gold = transform.Find("Status - Date/Text (TMP) - Gold").GetComponent<TMP_Text>(); 
         _date = transform.Find("Status - Date/Text (TMP) - Date").GetComponent<TMP_Text>();
+        _nextUpDown = transform.Find("Panel - NextDayUpDown/Text (TMP) - NextDayUpDown").GetComponent<TMP_Text>();
         _happyButton = transform.Find("Status - Point/HappyPoint/Button - Happy - BG/Button - Happy - Slider").GetComponent<Image>();
         _safetyButton = transform.Find("Status - Point/SafetyPoint/Button - Safety - BG/Button - Safety - Slider").GetComponent<Image>();
         _beliefButton = transform.Find("Status - Point/BeliefPoint/Button - Belief - BG/Button - Belief - Slider").GetComponent<Image>();
@@ -42,8 +39,9 @@ public class UIStatus : MonoBehaviour
         _safetyButton.fillAmount = GameManager.instance.SafetyPoint.Value / GameManager.instance.SafetyPoint.Max;
         _beliefButton.fillAmount = GameManager.instance.BeliefPoint.Value / GameManager.instance.BeliefPoint.Max;
         _cultureButton.fillAmount = GameManager.instance.CulturePoint.Value / GameManager.instance.CulturePoint.Max;
-        _date.text = "날짜 : " + GameManager.instance.Date.ToString();
-        _nextDayGold = GameManager.instance.SumGold.ToString();
-        _gold.text = "골드 : " + GameManager.instance.Gold.ToString() + $" {_nextDayGold}";
+        _date.text = $"<color=red>날짜 : {GameManager.instance.Date}</color>";
+        _gold.text = $"<color=yellow>골드 : {GameManager.instance.Gold}</color>";
+
+        _nextUpDown.text = $"<color=red>다음날 증감량</color> \n<color=yellow>골드 : {(GameManager.instance.nextTurnGold > 0 ? "+" : "")}{GameManager.instance.nextTurnGold}</color> / <color=blue>치안 : {(GameManager.instance.nextTurnGold > 0 ? "+" : "")}</color> / <color=white>신앙 : {(GameManager.instance.nextTurnGold > 0 ? "+" : "")}</color> / <color=purple>문화 : {(GameManager.instance.nextTurnGold > 0 ? "+" : "")}</color>";
     }
 }
