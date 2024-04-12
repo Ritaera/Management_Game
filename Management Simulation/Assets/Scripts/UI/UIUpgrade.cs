@@ -1,40 +1,222 @@
-Ôªøusing System;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIUpgrade : MonoBehaviour
 {
-    PlayerController2 _playerController;
+    private GameObject _popUpBase; // ∞≠»≠UI ∫Ò»∞º∫»≠ Ω√≈≥ ¿ßƒ°
+    private GameObject _barrier; // Barrier ¿ßƒ°
+    private TMP_Text _upgradeDescription; // ∞≠»≠ º≥∏Ì ∂ÁøÔ TMP ≈ÿΩ∫∆Æ
+    private TMP_Text _upgradePoint; // ∞≠»≠ ºˆƒ° ∂ÁøÔ TMP ≈ÿΩ∫∆Æ
+    private TMP_Text _upgradeCost; // ∞≠»≠ ∫ÒøÎ ∂ÁøÔ TMP ≈ÿΩ∫∆Æ
+    private Button _accapt; // ∞≠»≠ºˆ∂Ù πˆ∆∞
+    private Button _cancel; // ∞≠»≠√Îº“ πˆ∆∞
 
+    private int _samUpgradeCount = 1;
+    private int _mariaUpgradeCount = 1;
+    private int _heyjiUpgradeCount = 1;
+    private int _haniUpgradeCount = 1;
+    private int _banksyUpgradeCount = 1;
+
+    public GameObject PopUpBase
+    {
+        get
+        {
+            return _popUpBase;
+        }
+        set
+        {
+            _popUpBase = value;
+        }
+    }
+
+    UpgradeScriptableObject upgradeScriptableObject;
+    PlayerController2 _playerController;
 
     private void Awake()
     {
+        if (upgradeScriptableObject == null)
+        {
+            upgradeScriptableObject = FindFirstObjectByType<UpgradeScriptableObject>();
+        }
         if (_playerController == null)
         {
-            _playerController=FindFirstObjectByType<PlayerController2>();
+            _playerController = FindFirstObjectByType<PlayerController2>();
+        }
+
+        _barrier = transform.Find("Barrier").gameObject;
+        _popUpBase = transform.Find("Panel - PopUpBase").gameObject;
+        _upgradeDescription = transform.Find("Panel - PopUpBase/Image - Chat/Text (TMP) - Description").GetComponent<TMP_Text>();
+        _upgradePoint = transform.Find("Panel - PopUpBase/Image - Chat/Text (TMP) -  Plus").GetComponent<TMP_Text>();
+        _upgradeCost = transform.Find("Panel - PopUpBase/Image - Chat/Text (TMP) - Cost").GetComponent<TMP_Text>();
+        _accapt = transform.Find("Panel - PopUpBase/Image - Chat/Button - Accapt").GetComponent<Button>(); 
+        _cancel = transform.Find("Panel - PopUpBase/Image - Chat/Button - Cancel").GetComponent<Button>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CancelButtonClick();
         }
     }
+
+
     public void Upgrade()
     {
-        if (_playerController.HitName == "sam smith")
+        _popUpBase.SetActive(true);
+        _barrier.SetActive(true);
+
+        // øπø‹ √≥∏Æ(ø¿∑˘).
+        if (_playerController.GetHitName() == PlayerController2.EHitName.None)
         {
-            //Todo: ÎåÄÏû•Í∞Ñ ÏûëÏóÖ Ï≤òÎ¶¨.
+            Utils.LogRed("_playerController.GetHitName()ø°º≠ None¿ª π›»Ø«œ∏È æ»µ .");
+            return;
         }
-        else if (_playerController.HitName == "maria")
+
+        if (_playerController.GetHitName() == PlayerController2.EHitName.SamSmith)
         {
-            //Todo: ÏÑ±ÎãπÏ≤òÎ¶¨
+            upgradeScriptableObject = CardDataManager.Instance.GetUpgradeData($"blacksmithLevel{_samUpgradeCount}");
         }
-        else if(_playerController.HitName == "ÏàòÏÉÅÌïú ÎØ∏Î™®Ïùò Ïó¨Ï¢ÖÏóÖÏõê")
+        else if (_playerController.GetHitName() == PlayerController2.EHitName.Maria)
         {
-            //Todo: Î™®ÎüºÍ∞ÄÍ∏∏Îìú
+            upgradeScriptableObject = CardDataManager.Instance.GetUpgradeData($"Cathedral{_mariaUpgradeCount}");
         }
-        else if (_playerController.HitName == "ÏàòÏÉÅÌïú ÎØ∏Î™®Ïùò ÌïòÎÖÄ")
+        else if (_playerController.GetHitName() == PlayerController2.EHitName.Hani)
         {
-            //Todo: ÏÑ±
+            upgradeScriptableObject = CardDataManager.Instance.GetUpgradeData($"GuildLevel{_haniUpgradeCount}");
         }
-        else
+        else if (_playerController.GetHitName() == PlayerController2.EHitName.Hyeji)
         {
-            //Todo: ÏùÄÌñâ
+            upgradeScriptableObject = CardDataManager.Instance.GetUpgradeData($"CastleLevel{_heyjiUpgradeCount}");
         }
+        else if (_playerController.GetHitName() == PlayerController2.EHitName.Banksy)
+        {
+            upgradeScriptableObject = CardDataManager.Instance.GetUpgradeData($"Bank{_banksyUpgradeCount}");
+        }
+
+        if (upgradeScriptableObject != null)
+        {
+            UpdateText();
+        }
+    }
+
+
+    private void Start()
+    {
+        _accapt.onClick.AddListener(AccaptButtonClick);
+        _cancel.onClick.AddListener(CancelButtonClick);
+    }
+
+    public void AccaptButtonClick()
+    {
+        if (upgradeScriptableObject == null)
+        {
+            _upgradeCost.text = "<color=red>∞≠»≠∏¶ ∏µŒ º“¡¯«ﬂΩ¿¥œ¥Ÿ.</color>";
+            _accapt.interactable = false;
+            return;
+        }
+
+        if (GameManager.instance.Gold < upgradeScriptableObject.upGradeGold)
+        {
+            _upgradeCost.text = "<color=red>∞ÒµÂ∞° ∫Œ¡∑«’¥œ¥Ÿ.</color>";
+            _accapt.interactable = false;
+            return;
+        }
+
+        string upgradeDataName = string.Empty;
+        GameManager.instance.AddUpgradeList(upgradeScriptableObject);
+
+        switch (_playerController.GetHitName())  // πˆ∆∞¥©∏• ¥ÎªÛ ƒ´øÓ∆Æ 1 ¡ı∞°.
+        {
+            case PlayerController2.EHitName.SamSmith:
+                upgradeDataName = $"blacksmithLevel{++_samUpgradeCount}";
+                break;
+            case PlayerController2.EHitName.Maria:
+                upgradeDataName = $"Cathedral{++_mariaUpgradeCount}";
+                //_mariaUpgradeCount++;
+                break;
+            case PlayerController2.EHitName.Hani:
+                upgradeDataName = $"GuildLevel{++_haniUpgradeCount}";
+                //_haniUpgradeCount++;
+                break;
+            case PlayerController2.EHitName.Hyeji:
+                upgradeDataName = $"CastleLevel{++_heyjiUpgradeCount}";
+                //_heyjiUpgradeCount++;
+                break;
+            case PlayerController2.EHitName.Banksy:
+                //GameManager.instance.AddUpgradeList(upgradeScriptableObject);
+                upgradeDataName = $"Bank{++_banksyUpgradeCount}";
+                //_banksyUpgradeCount++;
+                break;
+            default:
+                break;
+        }
+
+        upgradeScriptableObject = CardDataManager.Instance.GetUpgradeData(upgradeDataName);
+        if (upgradeScriptableObject == null)
+        {
+            Utils.LogRed("∞≠»≠∏¶ ∏µŒ º“¡¯«ﬂΩ¿¥œ¥Ÿ. ±◊∏∏«œººø‰.");
+            return;
+        }
+
+        UpdateText();
+
+        //// todo => ∞¢ case ∏∂¥Ÿ  GameManager.instance.AddUpgradeList(upgradeScriptableObject) √ﬂ∞°
+        //// upgradescriptable ø¿∫Í¡ß∆Æ ∫“∑Øø¿±‚
+        //if (GameManager.instance.Gold >= upgradeScriptableObject.upGradeGold)
+        //{
+        //    string upgradeDataName = string.Empty;
+        //    GameManager.instance.AddUpgradeList(upgradeScriptableObject);
+
+        //    switch (_playerController.GetHitName())  // πˆ∆∞¥©∏• ¥ÎªÛ ƒ´øÓ∆Æ 1 ¡ı∞°.
+        //    {
+        //        case PlayerController2.EHitName.SamSmith:
+        //            upgradeDataName = $"blacksmithLevel{++_samUpgradeCount}";
+        //            break;
+        //        case PlayerController2.EHitName.Maria:
+        //            upgradeDataName = $"Cathedral{++_mariaUpgradeCount}";
+        //            //_mariaUpgradeCount++;
+        //            break;
+        //        case PlayerController2.EHitName.Hani:
+        //            upgradeDataName = $"GuildLevel{++_haniUpgradeCount}";
+        //            //_haniUpgradeCount++;
+        //            break;
+        //        case PlayerController2.EHitName.Hyeji:
+        //            upgradeDataName = $"CastleLevel{++_heyjiUpgradeCount}";
+        //            //_heyjiUpgradeCount++;
+        //            break;
+        //        case PlayerController2.EHitName.Banksy:
+        //            //GameManager.instance.AddUpgradeList(upgradeScriptableObject);
+        //            upgradeDataName = $"Bank{++_banksyUpgradeCount}";
+        //            //_banksyUpgradeCount++;
+        //            break;
+        //        default:
+        //            break;
+        //    }
+
+        //    upgradeScriptableObject = CardDataManager.Instance.GetUpgradeData(upgradeDataName);
+        //    UpdateText();
+        //}
+        //else
+        //{
+        //    _upgradeCost.text = "<color=red>∞ÒµÂ∞° ∫Œ¡∑«’¥œ¥Ÿ.</color>";
+        //    _accapt.interactable = false;
+        //}
+
+    }
+    public void CancelButtonClick()
+    {
+        _popUpBase.SetActive(false);
+        _barrier.SetActive(false);
+    }
+
+    public void UpdateText()
+    {
+        _upgradeDescription.text = upgradeScriptableObject.upGradeDescription;  // æ˜±◊∑π¿ÃµÂ ¡§∫∏.
+
+        _upgradePoint.text = $"<color=yellow>∏≈≈œ ∞ÒµÂ : {upgradeScriptableObject.upGradeEveryTurnGold}</color> / «‡∫πµµ : {upgradeScriptableObject.upGradeHappyAffectValue} / <color=blue>ƒ°æ» : {upgradeScriptableObject.upGradeSafetyAffectValue}</color> / <color=white>Ω≈æ” : {upgradeScriptableObject.upGradeFaithAffectValue}</color> / <color=purple>πÆ»≠ : {upgradeScriptableObject.upGradeCulturalAffectValue}</color>";
+
+        _upgradeCost.text = $"∫ÒøÎ : {upgradeScriptableObject.upGradeGold}";
     }
 }

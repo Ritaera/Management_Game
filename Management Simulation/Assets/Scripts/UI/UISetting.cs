@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using static SceneManagers;
+using Button = UnityEngine.UI.Button;
 
 
 public class UISetting : MonoBehaviour, SceneManagers
@@ -12,6 +11,7 @@ public class UISetting : MonoBehaviour, SceneManagers
     private Button _setting;
     private Scrollbar _scrollbar;
     private GameObject _panel;
+    private GameObject _barrier;
 
 
     private void Awake()
@@ -21,6 +21,7 @@ public class UISetting : MonoBehaviour, SceneManagers
         _setting = transform.Find("Button - Setting").GetComponent<Button>();
         _scrollbar = transform.Find("Panel - Setting/Sound/Scrollbar - Volume").GetComponent<Scrollbar>();
         _panel = transform.Find("Panel - Setting").gameObject;
+        _barrier = transform.Find("Panel - Setting/Barrier").gameObject;
     }
 
     private void Start()
@@ -40,6 +41,7 @@ public class UISetting : MonoBehaviour, SceneManagers
     public void CancelButtonClick()
     {
         _panel.SetActive(false);
+        _barrier.SetActive(false);
     }
 
 
@@ -47,6 +49,10 @@ public class UISetting : MonoBehaviour, SceneManagers
     {
         // KJH => 스크립트 비활성화 상태면 Update 함수 실행 안함.
         SoundVolumeUpDown();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CancelButtonClick();
+        }
     }
 
 
@@ -60,6 +66,6 @@ public class UISetting : MonoBehaviour, SceneManagers
     public void SettingButtonClick()
     {
         _panel.SetActive(true);
+        _barrier.SetActive(true);
     }
-
 }
