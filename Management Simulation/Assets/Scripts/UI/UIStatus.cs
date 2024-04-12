@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,13 +14,13 @@ public class UIStatus : MonoBehaviour
 
     private void Awake()
     {
-        _gold = transform.Find("Status - Date/Text (TMP) - Gold").GetComponent<TMP_Text>(); 
-        _date = transform.Find("Status - Date/Text (TMP) - Date").GetComponent<TMP_Text>();
-        _nextUpDown = transform.Find("Panel - NextDayUpDown/Text (TMP) - NextDayUpDown").GetComponent<TMP_Text>();
-        _happyButton = transform.Find("Status - Point/HappyPoint/Button - Happy - BG/Button - Happy - Slider").GetComponent<Image>();
-        _safetyButton = transform.Find("Status - Point/SafetyPoint/Button - Safety - BG/Button - Safety - Slider").GetComponent<Image>();
-        _beliefButton = transform.Find("Status - Point/BeliefPoint/Button - Belief - BG/Button - Belief - Slider").GetComponent<Image>();
-        _cultureButton = transform.Find("Status - Point/CulturePoint/Button - Culture - BG/Button - Culture - Slider").GetComponent<Image>();
+        _gold = transform.Find("Status/Status - Date/Text (TMP) - Gold").GetComponent<TMP_Text>(); 
+        _date = transform.Find("Status/Status - Date/Text (TMP) - Date").GetComponent<TMP_Text>();
+        _nextUpDown = transform.Find("Status/Panel - NextDayUpDown/Text (TMP) - NextDayUpDown").GetComponent<TMP_Text>();
+        _happyButton = transform.Find("Status/Status - Point/HappyPoint/Button - Happy - BG/Button - Happy - Slider").GetComponent<Image>();
+        _safetyButton = transform.Find("Status/Status - Point/SafetyPoint/Button - Safety - BG/Button - Safety - Slider").GetComponent<Image>();
+        _beliefButton = transform.Find("Status/Status - Point/BeliefPoint/Button - Belief - BG/Button - Belief - Slider").GetComponent<Image>();
+        _cultureButton = transform.Find("Status/Status - Point/CulturePoint/Button - Culture - BG/Button - Culture - Slider").GetComponent<Image>();
     }
 
     private void Start()
@@ -44,4 +41,5 @@ public class UIStatus : MonoBehaviour
 
         _nextUpDown.text = $"<color=red>다음날 증감량</color> \n<color=yellow>골드 : {(GameManager.instance.nextTurnGold > 0 ? "+" : "")}{GameManager.instance.nextTurnGold}</color> / <color=blue>치안 : {(GameManager.instance.nextTurnGold > 0 ? "+" : "")}</color> / <color=white>신앙 : {(GameManager.instance.nextTurnGold > 0 ? "+" : "")}</color> / <color=purple>문화 : {(GameManager.instance.nextTurnGold > 0 ? "+" : "")}</color>";
     }
+
 }

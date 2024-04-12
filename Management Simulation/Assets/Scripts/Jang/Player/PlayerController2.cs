@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 // Jang => https://www.notion.so/01_12-PlayerScript-d94013ad7f754c48b851c51bfa1cc5dd?pvs=4#a971918a79084f7a94582e7327e8566e 
@@ -11,6 +11,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController2 : MonoBehaviour
 {
+    public enum EHitName
+    {
+        SamSmith, Maria, Hani, Hyeji, Banksy, None
+    }
 
     UIUpgrade _uIUpgrade;
 
@@ -36,21 +40,25 @@ public class PlayerController2 : MonoBehaviour
     RaycastHit2D hit2;
     #endregion
 
-    private string _hitName = "";
+    //private string _hitName = "";
+    private float xScaleValue = 0f;
 
-    public string HitName
-    {
-        get
-        {
-            return _hitName;
-        }
+    public string HitName { get; private set; }
 
-        private set
-        {
+    private Dictionary<string, EHitName> hitNamePair = new Dictionary<string, EHitName>();
 
-        }
-    }
+    //public string HitName
+    //{
+    //    get
+    //    {
+    //        return _hitName;
+    //    }
 
+    //    private set
+    //    {
+
+    //    }
+    //}
 
     private void Awake()
     {
@@ -59,12 +67,21 @@ public class PlayerController2 : MonoBehaviour
             _uIUpgrade = FindFirstObjectByType<UIUpgrade>();
         }
 
-
-
         rbody = this.GetComponent<Rigidbody2D>();
         _groundLayer = (1 << GameObject.Find("Map").layer);
         _playerMaxPosition = GameObject.Find("PlayerMaxPosition").GetComponent<Transform>();
         _playerMinPosition = GameObject.Find("PlayerMinPosition").GetComponent<Transform>();
+
+        // 시작할 때 x 스케일 값을 저장 (크기 저장을 위함).
+        xScaleValue = transform.localScale.x;
+
+        // 키 이름 - 열거형 해시테이블 초기화.
+        hitNamePair = new Dictionary<string, EHitName>();
+        hitNamePair.TryAdd("Sam Smith", EHitName.SamSmith);
+        hitNamePair.TryAdd("Maria", EHitName.Maria);
+        hitNamePair.TryAdd("Hani", EHitName.Hani);
+        hitNamePair.TryAdd("Hyeji", EHitName.Hyeji);
+        hitNamePair.TryAdd("Banksy", EHitName.Banksy);
     }
 
     void Update()
@@ -86,7 +103,7 @@ public class PlayerController2 : MonoBehaviour
         else if (axisH == 0 && _jumpstate != false)
         {
             // Jang => Jump Coroutine 호출
-            Debug.Log("Move");
+            Utils.Log("Move");
             StartCoroutine(Jump());
         }
 
@@ -97,25 +114,24 @@ public class PlayerController2 : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Debug.Log(hit.collider.name);
+                Utils.Log(hit.collider.name);
                 //Jang => todo => hit.collider.name의 ""값에 따라서 강화  UI 호출 
             }
         }
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-
+            // Todo: Raycast 방식 변경 고려.
             hit2 = Physics2D.Raycast(transform.position, Vector3.back, 1f, 1 << LayerMask.NameToLayer("npc"));
 
             if (hit2.collider != null)
             {
-                _hitName = hit2.collider.name;
-                Debug.Log(HitName);
+                //_hitName = hit2.collider.name;
+                HitName = hit2.collider.name;
+                Utils.Log(HitName);
                 _uIUpgrade.Upgrade();
             }
         }
-
-
     }
 
     IEnumerator Move()
@@ -123,12 +139,11 @@ public class PlayerController2 : MonoBehaviour
         // Jang => axisH 값에 따라서 캐릭터의 localScale을 통해 좌우 반전
         if (axisH >= 0.0f)
         {
-            transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
+            transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
         }
         else if (axisH < 0.0f)
         {
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-
+            transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
         }
 
 
@@ -161,15 +176,16 @@ public class PlayerController2 : MonoBehaviour
         _onGround = Physics2D.Linecast(transform.position, transform.position - (transform.up * 0.5f), _groundLayer);
 
 
-        Debug.Log(_onGround);
+        Utils.Log(_onGround);
 
         // Jang => onGround가 True 상태면 실행
         if (_onGround)
         {
-            Debug.Log("CoroutineJump");
+            Utils.Log("CoroutineJump");
             Vector2 jumpdir = new Vector2(0, _jump);
             rbody.AddForce(jumpdir, ForceMode2D.Impulse);
         }
+
         yield return null;
 
     }
@@ -179,7 +195,13 @@ public class PlayerController2 : MonoBehaviour
         transform.position = new Vector2(0, 0);
     }
 
+    public EHitName GetHitName()
+    {
+        if (hitNamePair.TryGetValue(HitName, out EHitName hitName))
+        {
+            return hitName;
+        }
 
-
+        return EHitName.None;
+    }
 }
-

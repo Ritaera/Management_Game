@@ -2,11 +2,7 @@ using DiceGame.Singleton;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-
-
-
 
 [Serializable]
 public class GameFloat
@@ -31,6 +27,10 @@ public class GameManager : SingletonMonoBase<GameManager>
     private int _gold = 0;
     [SerializeField]
     private int _date = 0;
+
+    private int _count = 0;
+
+    private int _listCount = 0;
 
     // 다음턴 증가량
     [SerializeField]
@@ -95,13 +95,11 @@ public class GameManager : SingletonMonoBase<GameManager>
 
     // Jang => CardScriptableObject에서 instance 호출을 통해 Coroutine을 하려했으나 불가능해서
     // 새로운 함수를 생성 후 내부에서 코루틴 호출
-    public void SetStart(CardScriptableObject scriptableobj)
+    public void SetStart(CardScriptableObject scriptableobj, int index)
     {
+        _listCount = cardlist.Count;
         // Jang => valueList에 받아온 scriptableobj 추가
         cardlist.Add(scriptableobj);
-
-        // Jang => 다음턴 값 증가량 초기화
-        ResetTurnValue();
 
         // Jang => 카드에 적용된 턴수가 모든 카드가 같지 않고 다르기 때문에 계산식을 반복문을 통해서 작성
         // Jang => 위에서 valueList에 Scriptableobj에서 받아온 scriptableobj에서 작성된 턴수가 존재하면 반복문을 돌리고
@@ -109,23 +107,18 @@ public class GameManager : SingletonMonoBase<GameManager>
         for (int i = 0; i < cardlist.Count; i++)
         {
             // Jang => 카드가 영향을 미치는 턴수는 valueList[i]._cardAffectTurn임으로 cardAffectTurn이 0보다 크면 코루틴 실행
-            //if (valueList[i].cardAffectTurn > 0)
-            if (cardTurns[i] > 0)
+
+            if (cardTurns[index] > 0)
             {
-                StartCoroutine(CardValueSet(cardlist[i], i));
+              CardPlusSetValue(cardlist[i], index);
             }
             // Jang => cardAffectTurn이 0, 0보다 작은경우는 리스트에서 제거
             else
             {
-                cardlist.RemoveAt(i);
+                CardDeleteSetValue(cardlist[i]);
+                cardlist.RemoveAt(index);
             }
         }
-        // 건물 강화시 ScriptableObject 를 추가하여 사용 => for문 사용하여 계산
-        for (int i = 0; i < upgradeList.Count; i++)
-        {
-            UpGradeValueSet(upgradeList[i]);
-        }
-
         // 현재 값 + 다음 턴 증가량 값 계산 함수 호출
         GameSetValue();
 
@@ -134,23 +127,29 @@ public class GameManager : SingletonMonoBase<GameManager>
     }
 
     // Jang => 게임내의 value값 설정 코루틴
-    IEnumerator CardValueSet(CardScriptableObject scriptableObjects, int index)
+    public void CardPlusSetValue(CardScriptableObject scriptableObjects, int index)
     {
-        _nextTurnGold += scriptableObjects.cardGoldAffectValue;
-        _nextTurnSafety += scriptableObjects.cardSafetyAffectValue;
-        _nextTurnHappy += scriptableObjects.cardHappyAffectValue;
-        _nextTurnBelief += scriptableObjects.cardFaithAffectValue;
-        _nextTurnCulture += scriptableObjects.cardCulturalAffectValue;
+        if (cardlist.Count > _listCount)
+        {
+            Utils.Log($"{_nextTurnGold} + {scriptableObjects.cardGoldAffectValue}");
 
-        //scriptableObjects.cardAffectTurn--;
+            _nextTurnGold += scriptableObjects.cardGoldAffectValue;
+            _nextTurnSafety += scriptableObjects.cardSafetyAffectValue;
+            _nextTurnHappy += scriptableObjects.cardHappyAffectValue;
+            _nextTurnBelief += scriptableObjects.cardFaithAffectValue;
+            _nextTurnCulture += scriptableObjects.cardCulturalAffectValue;
+        }
         --cardTurns[index];
-
-        yield return null;
     }
 
     // 건물 업그레이드 값 계산
     public void UpGradeValueSet(UpgradeScriptableObject upgradeScriptableObject)
     {
+        if (_count >= upgradeList.Count)
+        {
+            return;
+        }
+
         // 다음턴 값 계산
         _nextTurnGold += upgradeScriptableObject.upGradeEveryTurnGold;
         _nextTurnSafety += upgradeScriptableObject.upGradeSafetyAffectValue;
@@ -159,8 +158,9 @@ public class GameManager : SingletonMonoBase<GameManager>
         _nextTurnCulture += upgradeScriptableObject.upGradeCulturalAffectValue;
 
         // 건물 업그레이드 강화시 사용할 골드
-        _gold += upgradeScriptableObject.upGradeGold;
+        _gold -= upgradeScriptableObject.upGradeGold;
 
+      
     }
 
     // 건물 업그레이드 + 카드 값 
@@ -173,21 +173,25 @@ public class GameManager : SingletonMonoBase<GameManager>
         _gold += _nextTurnGold;
     }
 
-    // 다음턴 값 초기화
-    public void ResetTurnValue()
-    {
-        _nextTurnGold = 0;
-        _nextTurnSafety = 0;
-        _nextTurnHappy = 0;
-        _nextTurnBelief = 0;
-        _nextTurnCulture = 0;
 
-    }
 
     public void AddUpgradeList(UpgradeScriptableObject upgradeScriptableObject)
     {
+        Utils.Log($"GameManager{_count}");
+        _count = upgradeList.Count;
         upgradeList.Add(upgradeScriptableObject);
+        Utils.Log($"GameManager{upgradeList.Count}");
+
+        UpGradeValueSet(upgradeScriptableObject);
     }
 
+    public void CardDeleteSetValue(CardScriptableObject scriptableObjects)
+    {
+        _nextTurnGold -= scriptableObjects.cardGoldAffectValue;
+        _nextTurnSafety -= scriptableObjects.cardSafetyAffectValue;
+        _nextTurnHappy -= scriptableObjects.cardHappyAffectValue;
+        _nextTurnBelief -= scriptableObjects.cardFaithAffectValue;
+        _nextTurnCulture -= scriptableObjects.cardCulturalAffectValue;
+    }
 
 }

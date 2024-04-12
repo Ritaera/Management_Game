@@ -30,7 +30,7 @@ public class SPUM_Editor : Editor
             Texture2D t = AssetDatabase.LoadAssetAtPath<Texture2D>(texPath);
             if(t != null)
             {
-                Debug.Log(t);
+                Utils.Log(t);
                 SPB._mainBody = (Texture2D)(EditorGUILayout.ObjectField(t,typeof(Texture2D), true));
                 SPB.SetBodySprite();
             }

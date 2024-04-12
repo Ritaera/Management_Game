@@ -14,7 +14,9 @@ public class CardDataManager : MonoBehaviour
 
                 if (instance == null)
                 {
-                    Debug.LogError($"현재 씬에 {typeof(CardDataManager)} 컴포넌트를 가진 매니저 게임 오브젝트가 없음. 생성 필요함.");
+                    //Utils.LogError($"현재 씬에 {typeof(CardDataManager)} 컴포넌트를 가진 매니저 게임 오브젝트가 없음. 생성 필요함.");
+                    Utils.LogRed("현재 씬에 {typeof(CardDataManager)} 컴포넌트를 가진 매니저 게임 오브젝트가 없음. 생성 필요함.");
+                    Debug.Assert(false);
                 }
             }
 

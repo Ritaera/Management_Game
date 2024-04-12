@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using System;
 
 using Random = UnityEngine.Random;
 
@@ -39,20 +38,16 @@ public class CardManager : MonoBehaviour
         // todo => Jang => 게임 시작시 실행하도록 변경 필요
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
-        //    Debug.Log(testlist.Count);
+        //    Utils.Log(testlist.Count);
         //    StartCoroutine(SelectCard());
         //}
     }
 
-    public void StartC()
-    {
-        StartCoroutine(SelectCard());
-    }
 
 
 
     // Jang => 카드 고르는 코루틴 함수
-    IEnumerator SelectCard()
+    public void SelectCard()
     {
         // Jang => random값 설정
         int random = Random.Range(0, cardDataList.Count);
@@ -62,21 +57,18 @@ public class CardManager : MonoBehaviour
         if (cardDataList.Count > 0)
         {
             // Jang => SingleTon인 GamePlayManager에 instance를 통해 SetStart함수에 scriptable 제공
-            GameManager.instance.SetStart(scriptable);
+            GameManager.instance.SetStart(scriptable, random);
 
             // Jang => CardUIManager에 전달
             _cardManager.GetCardInfo(scriptable);
 
             // Jang => 카드 선택후 삭제 코루틴 실행
-            yield return StartCoroutine(RemoveCard(random));
+            StartCoroutine(RemoveCard(random));
         }
         // Jang => Test용 예외처리 
         // todo => Jang => GameplayManager 호출은 카드 횟수만큼만 하면 됨으로 예외처리 할 필요가 없을 가능성 존재 
         // => 다같이 고민해보고 설정하기
-        else
-        {
-            GameManager.instance.SetStart(scriptable);
-        }
+        
 
     }
     // Jang => 카드 삭제 코루틴 함수
