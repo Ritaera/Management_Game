@@ -2,39 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static SceneManagers;
 
 
-public class UISetting : MonoBehaviour, SceneManagers
+public class UIStartSetting : MonoBehaviour
 {
-    private Button _lobby;
     private Button _cancel;
-    private Button _setting;
+    private Button _settingButton;
     private Scrollbar _scrollbar;
     private GameObject _panel;
 
 
     private void Awake()
     {
-        _lobby = transform.Find("Panel - Setting/Game Button/Button - Lobby").GetComponent<Button>();
         _cancel = transform.Find("Panel - Setting/Game Button/Button - Cancel").GetComponent<Button>();
-        _setting = transform.Find("Button - Setting").GetComponent<Button>();
+        _settingButton = transform.Find("Button - Setting").GetComponent<Button>();
         _scrollbar = transform.Find("Panel - Setting/Sound/Scrollbar - Volume").GetComponent<Scrollbar>();
         _panel = transform.Find("Panel - Setting").gameObject;
     }
 
     private void Start()
     {
-        _lobby.onClick.AddListener(LobbyButtonClick);
         _cancel.onClick.AddListener(CancelButtonClick);
-        _setting.onClick.AddListener(SettingButtonClick);
+        _settingButton.onClick.AddListener(SettingButtonClick);
     }
 
-    // KJH => 로비버튼 클릭시 호출함수.
-    public void LobbyButtonClick()
-    {
-        SceneManagers.LoadScenes(MoveScene.Main);
-    }
 
     // KJH => 취소버튼 클릭시 호출 함수.
     public void CancelButtonClick()

@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
+
+
 [Serializable]
 public class GameFloat
 {
@@ -28,8 +31,13 @@ public class GameManager : SingletonMonoBase<GameManager>
     private int _gold = 0;
     [SerializeField]
     private int _date = 0;
-    private int _sumGold;
-    public int Gold 
+
+    // 카드 ScriptableObject의 카드 턴 값을 각가 관리하는 배열.
+    [SerializeField] private List<int> cardTurns = new List<int>();
+
+    [SerializeField]
+    private int _nextTrunGold;
+    public int Gold
     {
         get
         {
@@ -40,36 +48,40 @@ public class GameManager : SingletonMonoBase<GameManager>
             _gold = value;
         }
     }
-    public int Date  
+    public int Date
     {
         get
         {
             return _date;
         }
-        set
-        {
-            _date = value;
-        }
+        private set { }
     }
-    public int SumGold
+    public int nextTurnGold
     {
         get
         {
-            return _sumGold;
+            return _nextTrunGold;
         }
-        set
-        {
-            _sumGold = value;
-        }
+        private set { }
     }
 
-    public int everyTurnGold;
     public Action PointUpdate;
 
     override protected void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
+
+        // ScriptableObject에서 턴 값만 받아오기.
+        FindAnyObjectByType<CardManager>().testlist.ForEach((card) =>
+        {
+            cardTurns.Add(card.cardAffectTurn);
+        });
+    }
+
+    private void Update()
+    {
+        PointUpdate();
     }
 
     // Jang => CardScriptableObject Script에서 선택한 ScriptableObject를 받아와 저장하기 위해 리스트 생성
@@ -88,9 +100,10 @@ public class GameManager : SingletonMonoBase<GameManager>
         for (int i = 0; i < valueList.Count; i++)
         {
             // Jang => 카드가 영향을 미치는 턴수는 valueList[i]._cardAffectTurn임으로 cardAffectTurn이 0보다 크면 코루틴 실행
-            if (valueList[i]._cardAffectTurn > 0)
+            //if (valueList[i].cardAffectTurn > 0)
+            if (cardTurns[i] > 0)
             {
-                StartCoroutine(CardValueSetGameValue(valueList[i]));
+                StartCoroutine(CardValueSetGameValue(valueList[i], i));
             }
             // Jang => cardAffectTurn이 0, 0보다 작은경우는 리스트에서 제거
             else
@@ -98,30 +111,37 @@ public class GameManager : SingletonMonoBase<GameManager>
                 valueList.RemoveAt(i);
             }
         }
-        _date--;
-        SetGoldValue(_gold, everyTurnGold);
+        _date++;
+        SetGoldValue(_gold, nextTurnGold);
     }
 
     // Jang => 게임내의 value값 설정 코루틴
-    IEnumerator CardValueSetGameValue(CardScriptableObject scriptableObjects)
+    IEnumerator CardValueSetGameValue(CardScriptableObject scriptableObjects, int index)
     {
         // Jang => Property에 접근하여 set을 통해 값을 계산
-        HappyPoint.Value += scriptableObjects._cardHappyAffectValue;
-        SafetyPoint.Value += scriptableObjects._cardSafetyAffectValue;
-        BeliefPoint.Value += scriptableObjects._cardFaithAffectValue;
-        CulturePoint.Value += scriptableObjects._cardCulturalAffectValue;
-        _gold += scriptableObjects._cardGoldAffectValue;
-        scriptableObjects._cardAffectTurn--;
+        HappyPoint.Value += scriptableObjects.cardHappyAffectValue;
+        SafetyPoint.Value += scriptableObjects.cardSafetyAffectValue;
+        BeliefPoint.Value += scriptableObjects.cardFaithAffectValue;
+        CulturePoint.Value += scriptableObjects.cardCulturalAffectValue;
+        _gold += scriptableObjects.cardGoldAffectValue;
+        _nextTrunGold += scriptableObjects.cardGoldAffectValue;
 
-        _sumGold += scriptableObjects._cardGoldAffectValue;
+        //scriptableObjects.cardAffectTurn--;
+        --cardTurns[index];
+
+        //if (scriptableObjects.cardAffectTurn <= 0)
+        if (cardTurns[index] <= 0)
+        {
+            _nextTrunGold -= scriptableObjects.cardGoldAffectValue;
+        }
+
         yield return null;
-
     }
 
     // 매턴 지급되는 골드, 건물 업그레이드를 통한 업그레이드
     public void SetGoldValue(int gold, int goldvalue)
     {
-        gold += everyTurnGold;
+        gold += nextTurnGold;
         PointUpdate?.Invoke();
     }
 }

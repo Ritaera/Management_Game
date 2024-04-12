@@ -13,7 +13,6 @@ public class UIStatus : MonoBehaviour
     private Image _safetyButton;
     private Image _beliefButton;
     private Image _cultureButton;
-    public Action OpenCard; // 카드매니저 에서 사용할 액션.
 
     // 다음턴 추가될 골드 표시.
     private string _nextDayGold;
@@ -43,7 +42,7 @@ public class UIStatus : MonoBehaviour
         _beliefButton.fillAmount = GameManager.instance.BeliefPoint.Value / GameManager.instance.BeliefPoint.Max;
         _cultureButton.fillAmount = GameManager.instance.CulturePoint.Value / GameManager.instance.CulturePoint.Max;
         _date.text = "날짜 : " + GameManager.instance.Date.ToString();
-        _nextDayGold = GameManager.instance.SumGold.ToString();
+        _nextDayGold = GameManager.instance.nextTurnGold.ToString();
         _gold.text = "골드 : " + GameManager.instance.Gold.ToString() + $" {_nextDayGold}";
     }
 }

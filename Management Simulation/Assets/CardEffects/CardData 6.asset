@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a2b314930fe8343b5468d5be84e64f, type: 3}
   m_Name: CardData 6
   m_EditorClassIdentifier: 
-  _cardBackgroundSprite: {fileID: 0}
-  _cardSprite: {fileID: 0}
-  _cardAffectTurn: 3
-  _cardFaithAffectValue: 5
-  _cardCulturalAffectValue: 5
-  _cardGoldAffectValue: 0
-  _cardSafetyAffectValue: 0
-  _cardHappyAffectValue: -3
-  _cardDescription: "\uC815\uCCB4\uB97C \uC54C \uC218 \uC5C6\uB294 \uBE5B\uC774 \uB9C8\uC744\uC744
-    \uBE44\uCDA5\uB2C8\uB2E4. \uAD50\uD68C\uCE21\uC740 \uC774\uB97C \uC2E0\uC758
-    \uC740\uCD1D\uC774\uB77C \uBBFF\uACE0         \uD559\uD68C\uCE21\uC740 \uC774\uB97C
-    \uBD84\uC11D\uD558\uB824 \uB178\uB825\uD569\uB2C8\uB2E4."
+  cardBackgroundImage: {fileID: 0}
+  cardImage: {fileID: 0}
+  cardAffectTurn: 2
+  cardFaithAffectValue: 0
+  cardCulturalAffectValue: 0
+  cardGoldAffectValue: -15
+  cardSafetyAffectValue: -10
+  cardHappyAffectValue: -5
+  cardDescription: "\uC8FC\uC810\uC5D0\uC11C \uC77C\uC5B4\uB09C \uAC04\uB2E8\uD55C
+    \uC2DC\uBE44\uAC00 \uBAA8\uD5D8\uAC00\uB4E4\uACFC \uACBD\uBE44\uB300\uC758 \uC2F8\uC6C0\uC73C\uB85C
+    \uBC88\uC84C\uC2B5\uB2C8\uB2E4"

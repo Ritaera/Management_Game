@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13a2b314930fe8343b5468d5be84e64f, type: 3}
-  m_Name: CardData 12
+  m_Name: CardData 30
   m_EditorClassIdentifier: 
   cardBackgroundImage: {fileID: 0}
   cardImage: {fileID: 0}
-  cardAffectTurn: 3
+  cardAffectTurn: 4
   cardFaithAffectValue: 0
   cardCulturalAffectValue: 3
-  cardGoldAffectValue: 0
+  cardGoldAffectValue: -3
   cardSafetyAffectValue: 0
-  cardHappyAffectValue: -3
-  cardDescription: "\uAD50\uD68C\uC5D0\uC11C \uC608\uC5B8\uC11C\uB97C \uACF5\uD45C\uD569\uB2C8\uB2E4.
-    \uC601\uC9C0\uBBFC\uB4E4\uC740 \uC774\uB97C \uC22D\uBC30\uD558\uB294 \uD55C\uD3B8
-    \uC608\uC5B8\uC11C\uC758 \uC885\uB9D0\uC758 \uB0A0\uC774 \uC5B8\uC81C\uC77C\uC9C0
-    \uBD88\uC548\uD574 \uD569\uB2C8\uB2E4. "
+  cardHappyAffectValue: 5
+  cardDescription: "\uC57C\uC0DD \uB4E4\uAC1C\uACFC \uAE38\uACE0\uC591\uC774\uB4E4\uC774
+    \uAC00\uCD95\uD654\uB429\uB2C8\uB2E4. \uC774\uB4E4\uC740 \uC601\uC9C0\uBBFC\uB4E4\uC758
+    \uD558\uB8E8\uC758 \uC704\uC548\uC774\uC790 \uCE5C\uAD6C\uAC00 \uB418\uC5C8\uB124\uC694.            
+    '\uC560\uC644\uB3D9\uBB3C'\uC774\uB77C\uB294 \uAC1C\uB150\uC774 \uC0DD\uAE41\uB2C8\uB2E4."
