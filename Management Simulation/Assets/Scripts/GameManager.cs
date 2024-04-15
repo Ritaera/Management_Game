@@ -31,7 +31,7 @@ public class GameManager : SingletonMonoBase<GameManager>
 
     // 다음턴 증가량
     [SerializeField]
-    public int NextTurnGold { get; private set; }
+    public int NextTurnGold { get; private set; } = 10;
     public int NextTurnHappy { get; private set; }
     public int NextTurnSafety { get; private set; }
     public int NextTurnBelief { get; private set; }
