@@ -1295,7 +1295,7 @@ public class SPUM_Manager : MonoBehaviour
             break;
 
             case 1:
-            Debug.Log("Please Check Error Message");
+            Utils.Log("Please Check Error Message");
             break;
         }
     }
@@ -1312,23 +1312,23 @@ public class SPUM_Manager : MonoBehaviour
         bool Chk = false;
         if(Directory.Exists("Assets/Resources/SPUM/SPUM_Sprites/Items"))
         {
-            Debug.Log("Found Resources Folder Success!!");
+            Utils.Log("Found Resources Folder Success!!");
             if(Directory.Exists("Assets/Resources/SPUM/SPUM_Sprites/Items"))
             {
-                Debug.Log("Found SPUM_Sprite Folder, will delete it");
+                Utils.Log("Found SPUM_Sprite Folder, will delete it");
                 FileUtil.DeleteFileOrDirectory("Assets/Resources/SPUM/SPUM_Sprites/Items");
             }
         }
         else
         {
-            Debug.Log("Project doesn't have Resources Folder Yet, Will make Resource Project Automatically");
+            Utils.Log("Project doesn't have Resources Folder Yet, Will make Resource Project Automatically");
             Directory.CreateDirectory("Assets/Resources/SPUM/SPUM_Sprites/");
         }
 
         if(AssetDatabase.CopyAsset("Assets/SPUM/SPUM_Sprites/Items","Assets/Resources/SPUM/SPUM_Sprites/Items"))
         {
             Chk = true;
-            Debug.Log("Install SPUM Sprtie Data Success in Resources Folder");
+            Utils.Log("Install SPUM Sprtie Data Success in Resources Folder");
 
             if(!Directory.Exists("Assets/Resources/SPUM/SPUM_UNITS"))
             {
@@ -1337,7 +1337,7 @@ public class SPUM_Manager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Copy Failed");
+            Utils.Log("Copy Failed");
         }
 
         // if(Chk)
@@ -1398,8 +1398,8 @@ public class SPUM_Manager : MonoBehaviour
             }
         }
 
-        // for(var i = 0 ; i < tSP.Count;i++) Debug.Log(tSP[i]);
-        // Debug.Log(tSP.Count);
+        // for(var i = 0 ; i < tSP.Count;i++) Utils.Log(tSP[i]);
+        // Utils.Log(tSP.Count);
         _unitObjSet._spriteOBj._bodyList[0].sprite = tSP[5];
         _unitObjSet._spriteOBj._bodyList[1].sprite = tSP[2];
         _unitObjSet._spriteOBj._bodyList[2].sprite = tSP[0];

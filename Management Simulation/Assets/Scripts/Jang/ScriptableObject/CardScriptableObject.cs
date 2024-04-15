@@ -17,4 +17,8 @@ public class CardScriptableObject : ScriptableObject
     public int cardHappyAffectValue; // 카드가 행복에 영향을 미치는 값
 
     public string cardDescription; // 카드 설명
+    
+    //작성자 : 장승호 (2024.04.15)
+    // GameManager에서 계산여부를 확인하기 위해 bool값 추가
+    public bool isAlreadycomputation = false;
 }

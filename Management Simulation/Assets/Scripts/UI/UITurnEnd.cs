@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,13 +26,18 @@ public class UITurnEnd : MonoBehaviour
 
     public Action OpenCard; // 카드매니저 에서 사용할 액션.
 
-    public CardManager cardManager;
+    CardManager _cardManager;
+    UIStatus _uIStatus;
 
     private void Awake()
     {
-        if (cardManager == null)
+        if (_cardManager == null)
         {
-            cardManager = FindFirstObjectByType<CardManager>();
+            _cardManager = FindFirstObjectByType<CardManager>();
+        }
+        if (_uIStatus == null)
+        {
+            _uIStatus = FindFirstObjectByType<UIStatus>();
         }
 
         _backCard = transform.Find("Panel/CardSystem/Button - FrontCard/Button - BackCard").GetComponent<Image>();
@@ -77,6 +81,7 @@ public class UITurnEnd : MonoBehaviour
         if (IsCardAnimationEnd)
         {
             _panel.SetActive(false);  // 캠버스 비활성화.
+
             _nextTurnButton.gameObject.SetActive(true);  // 다음날 버튼 활성화.
             _backCard.fillAmount = 1;
         }
@@ -99,8 +104,9 @@ public class UITurnEnd : MonoBehaviour
             SceneManagers.LoadScenes(MoveScene.EndGame);
         }
 
+
         _panel.SetActive(true);  // 캠버스 활성화.
-        cardManager.StartC();
+        _cardManager.SelectCard();
         _cardSystem.SetActive(false); // 카드시스템 비활성화.
         _nextDay.gameObject.SetActive(true);  // 다음날 Text 활성화.
         _nextTurnButton.gameObject.SetActive(false);  // 다음날 버튼 비활성화.
