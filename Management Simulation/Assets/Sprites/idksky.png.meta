@@ -226,7 +226,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      idksky_0: -6662015436653944131
+      idksky_1: -4926663533678821252
+      idksky_2: -583932515769391161
+      idksky_3: 2137680121006086561
+      idksky_4: 1477143293433137198
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

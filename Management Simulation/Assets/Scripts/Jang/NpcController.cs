@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class NpcController : MonoBehaviour
 {
-    private float _speed = 3.5f;  
+    private float _speed = 3.5f;
+
+    [SerializeField]
     private float _moveRange = 20f;
 
     private Vector2 moveDirection;
+
+    [SerializeField]
+    private float _moveVector;
 
     private float xScaleValue = 0f;
 
     void Start()
     {
-        moveDirection = new Vector2(1f, 0f);
+        moveDirection = new Vector2(_moveVector, 0f);
         xScaleValue = transform.localScale.x;
+
+        if(_moveVector < 0f)
+        {
+            transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
+        }
     }
 
     void Update()

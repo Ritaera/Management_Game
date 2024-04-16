@@ -130,7 +130,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sky-removebg-preview_0: -7266554489425892165
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
