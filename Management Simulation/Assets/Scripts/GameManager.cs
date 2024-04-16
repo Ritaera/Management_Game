@@ -2,7 +2,6 @@ using DiceGame.Singleton;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 [Serializable]
@@ -28,8 +27,26 @@ public class GameManager : SingletonMonoBase<GameManager>
     private int _gold = 0;
     [SerializeField]
     private int _date = 0;
-    private int _sumGold;
-    public int Gold 
+
+    private int _count = 0;
+
+    private int _listCount = 0;
+
+    // 다음턴 증가량
+    [SerializeField]
+    private int _nextTurnGold;
+    private int _nextTurnHappy;
+    private int _nextTurnSafety;
+    private int _nextTurnBelief;
+    private int _nextTurnCulture;
+
+    // Jang => CardScriptableObject Script에서 선택한 ScriptableObject를 받아와 저장하기 위해 리스트 생성
+    [SerializeField] List<CardScriptableObject> cardlist = new List<CardScriptableObject>();
+    //Jang => UpgradeScriptableObject Script에서 선택한 ScriptableObject를 받아와 저장하기 위해 리스트 생성
+    [SerializeField] List<UpgradeScriptableObject> upgradeList = new List<UpgradeScriptableObject>();
+    // 카드 ScriptableObject의 카드 턴 값을 각가 관리하는 배열.
+    [SerializeField] private List<int> cardTurns = new List<int>();
+    public int Gold
     {
         get
         {
@@ -40,88 +57,141 @@ public class GameManager : SingletonMonoBase<GameManager>
             _gold = value;
         }
     }
-    public int Date  
+    public int Date
     {
         get
         {
             return _date;
         }
-        set
-        {
-            _date = value;
-        }
+        private set { }
     }
-    public int SumGold
+    public int nextTurnGold
     {
         get
         {
-            return _sumGold;
+            return _nextTurnGold;
         }
-        set
-        {
-            _sumGold = value;
-        }
+        private set { }
     }
 
-    public int everyTurnGold;
     public Action PointUpdate;
 
     override protected void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
+
+        // ScriptableObject에서 턴 값만 받아오기.
+        foreach (var card in CardDataManager.Instance.cardData)
+        {
+            cardTurns.Add(card.cardAffectTurn);
+        }
     }
 
-    // Jang => CardScriptableObject Script에서 선택한 ScriptableObject를 받아와 저장하기 위해 리스트 생성
-    [SerializeField] List<CardScriptableObject> valueList = new List<CardScriptableObject>();
+    private void Update()
+    {
+        PointUpdate();
+    }
 
     // Jang => CardScriptableObject에서 instance 호출을 통해 Coroutine을 하려했으나 불가능해서
     // 새로운 함수를 생성 후 내부에서 코루틴 호출
-    public void SetStart(CardScriptableObject scriptableobj)
+    public void SetStart(CardScriptableObject scriptableobj, int index)
     {
+        _listCount = cardlist.Count;
         // Jang => valueList에 받아온 scriptableobj 추가
-        valueList.Add(scriptableobj);
+        cardlist.Add(scriptableobj);
 
         // Jang => 카드에 적용된 턴수가 모든 카드가 같지 않고 다르기 때문에 계산식을 반복문을 통해서 작성
         // Jang => 위에서 valueList에 Scriptableobj에서 받아온 scriptableobj에서 작성된 턴수가 존재하면 반복문을 돌리고
         // Jang => 턴수가 0이 되면 리스트에서 제거
-        for (int i = 0; i < valueList.Count; i++)
+        for (int i = 0; i < cardlist.Count; i++)
         {
             // Jang => 카드가 영향을 미치는 턴수는 valueList[i]._cardAffectTurn임으로 cardAffectTurn이 0보다 크면 코루틴 실행
-            if (valueList[i]._cardAffectTurn > 0)
+
+            if (cardTurns[index] > 0)
             {
-                StartCoroutine(CardValueSetGameValue(valueList[i]));
+              CardPlusSetValue(cardlist[i], index);
             }
             // Jang => cardAffectTurn이 0, 0보다 작은경우는 리스트에서 제거
             else
             {
-                valueList.RemoveAt(i);
+                CardDeleteSetValue(cardlist[i]);
+                cardlist.RemoveAt(index);
             }
         }
-        _date--;
-        SetGoldValue(_gold, everyTurnGold);
+        // 현재 값 + 다음 턴 증가량 값 계산 함수 호출
+        GameSetValue();
+
+        // 날짜 턴수 증가
+        _date++;
     }
 
     // Jang => 게임내의 value값 설정 코루틴
-    IEnumerator CardValueSetGameValue(CardScriptableObject scriptableObjects)
+    public void CardPlusSetValue(CardScriptableObject scriptableObjects, int index)
     {
-        // Jang => Property에 접근하여 set을 통해 값을 계산
-        HappyPoint.Value += scriptableObjects._cardHappyAffectValue;
-        SafetyPoint.Value += scriptableObjects._cardSafetyAffectValue;
-        BeliefPoint.Value += scriptableObjects._cardFaithAffectValue;
-        CulturePoint.Value += scriptableObjects._cardCulturalAffectValue;
-        _gold += scriptableObjects._cardGoldAffectValue;
-        scriptableObjects._cardAffectTurn--;
+        if (cardlist.Count > _listCount)
+        {
+            Utils.Log($"{_nextTurnGold} + {scriptableObjects.cardGoldAffectValue}");
 
-        _sumGold += scriptableObjects._cardGoldAffectValue;
-        yield return null;
-
+            _nextTurnGold += scriptableObjects.cardGoldAffectValue;
+            _nextTurnSafety += scriptableObjects.cardSafetyAffectValue;
+            _nextTurnHappy += scriptableObjects.cardHappyAffectValue;
+            _nextTurnBelief += scriptableObjects.cardFaithAffectValue;
+            _nextTurnCulture += scriptableObjects.cardCulturalAffectValue;
+        }
+        --cardTurns[index];
     }
 
-    // 매턴 지급되는 골드, 건물 업그레이드를 통한 업그레이드
-    public void SetGoldValue(int gold, int goldvalue)
+    // 건물 업그레이드 값 계산
+    public void UpGradeValueSet(UpgradeScriptableObject upgradeScriptableObject)
     {
-        everyTurnGold += gold;
-        PointUpdate?.Invoke();
+        if (_count >= upgradeList.Count)
+        {
+            return;
+        }
+
+        // 다음턴 값 계산
+        _nextTurnGold += upgradeScriptableObject.upGradeEveryTurnGold;
+        _nextTurnSafety += upgradeScriptableObject.upGradeSafetyAffectValue;
+        _nextTurnHappy += upgradeScriptableObject.upGradeHappyAffectValue;
+        _nextTurnBelief += upgradeScriptableObject.upGradeFaithAffectValue;
+        _nextTurnCulture += upgradeScriptableObject.upGradeCulturalAffectValue;
+
+        // 건물 업그레이드 강화시 사용할 골드
+        _gold -= upgradeScriptableObject.upGradeGold;
+
+      
     }
+
+    // 건물 업그레이드 + 카드 값 
+    public void GameSetValue()
+    {
+        HappyPoint.Value += _nextTurnHappy;
+        SafetyPoint.Value += _nextTurnSafety;
+        BeliefPoint.Value += _nextTurnBelief;
+        CulturePoint.Value += _nextTurnCulture;
+        _gold += _nextTurnGold;
+    }
+
+
+
+    public void AddUpgradeList(UpgradeScriptableObject upgradeScriptableObject)
+    {
+        Utils.Log($"GameManager{_count}");
+        _count = upgradeList.Count;
+        upgradeList.Add(upgradeScriptableObject);
+        Utils.Log($"GameManager{upgradeList.Count}");
+
+        UpGradeValueSet(upgradeScriptableObject);
+    }
+
+    public void CardDeleteSetValue(CardScriptableObject scriptableObjects)
+    {
+        _nextTurnGold -= scriptableObjects.cardGoldAffectValue;
+        _nextTurnSafety -= scriptableObjects.cardSafetyAffectValue;
+        _nextTurnHappy -= scriptableObjects.cardHappyAffectValue;
+        _nextTurnBelief -= scriptableObjects.cardFaithAffectValue;
+        _nextTurnCulture -= scriptableObjects.cardCulturalAffectValue;
+    }
+
 }

@@ -1,17 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SPUM_Prefabs : MonoBehaviour
 {
-    //public SPUM_SpriteList _spriteOBj;
+    public SPUM_SpriteList _spriteOBj;
     public bool EditChk;
     public string _code;
     public Animator _anim;
 
     public void PlayAnimation (int num)
-    {                                                                                                                                 
+    {
         switch(num)
         {
             case 0: //Idle

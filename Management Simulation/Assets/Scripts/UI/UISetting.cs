@@ -1,26 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using static SceneManagers;
+using Button = UnityEngine.UI.Button;
 
 
-public class UISetting : MonoBehaviour
+public class UISetting : MonoBehaviour, SceneManagers
 {
     private Button _lobby;
     private Button _cancel;
     private Button _setting;
     private Scrollbar _scrollbar;
     private GameObject _panel;
+    private GameObject _barrier;
 
 
     private void Awake()
     {
-        // Todo: 자동 컴포넌트 연결 코드 작성하기.
         _lobby = transform.Find("Panel - Setting/Game Button/Button - Lobby").GetComponent<Button>();
         _cancel = transform.Find("Panel - Setting/Game Button/Button - Cancel").GetComponent<Button>();
         _setting = transform.Find("Button - Setting").GetComponent<Button>();
         _scrollbar = transform.Find("Panel - Setting/Sound/Scrollbar - Volume").GetComponent<Scrollbar>();
         _panel = transform.Find("Panel - Setting").gameObject;
+        _barrier = transform.Find("Panel - Setting/Barrier").gameObject;
     }
 
     private void Start()
@@ -33,13 +34,14 @@ public class UISetting : MonoBehaviour
     // KJH => 로비버튼 클릭시 호출함수.
     public void LobbyButtonClick()
     {
-        // Todo: 로비씬으로 이동.
+        SceneManagers.LoadScenes(MoveScene.Main);
     }
 
     // KJH => 취소버튼 클릭시 호출 함수.
     public void CancelButtonClick()
     {
         _panel.SetActive(false);
+        _barrier.SetActive(false);
     }
 
 
@@ -47,6 +49,10 @@ public class UISetting : MonoBehaviour
     {
         // KJH => 스크립트 비활성화 상태면 Update 함수 실행 안함.
         SoundVolumeUpDown();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CancelButtonClick();
+        }
     }
 
 
@@ -60,6 +66,6 @@ public class UISetting : MonoBehaviour
     public void SettingButtonClick()
     {
         _panel.SetActive(true);
+        _barrier.SetActive(true);
     }
-
 }
