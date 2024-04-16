@@ -45,6 +45,8 @@ public class PlayerController2 : MonoBehaviour
 
     public string HitName { get; private set; }
 
+    public string HiddenHitName { get; private set; }
+
     private Dictionary<string, EHitName> hitNamePair = new Dictionary<string, EHitName>();
 
     //public string HitName
@@ -114,8 +116,7 @@ public class PlayerController2 : MonoBehaviour
 
             if (hit.collider != null)
             {
-                Utils.Log(hit.collider.name);
-                //Jang => todo => hit.collider.name의 ""값에 따라서 강화  UI 호출 
+                HiddenHitName = hit.collider.name;
             }
         }
 
