@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: blacksmithLevel2
   m_EditorClassIdentifier: 
   upGradeEveryTurnGold: 0
-  upGradeGold: 0
+  upGradeGold: -100
   upGradeFaithAffectValue: 0
   upGradeCulturalAffectValue: 0
-  upGradeSafetyAffectValue: 0
-  upGradeHappyAffectValue: 0
-  upGradeDescription: 
+  upGradeSafetyAffectValue: 2
+  upGradeHappyAffectValue: -5
+  upGradeDescription: "\uB300\uC7A5\uC7A5\uC774\uB4E4\uC774 \uC810\uC810 \uC5C5\uBB34\uC5D0
+    \uC775\uC219\uD574\uC838 \uAC11\uB2C8\uB2E4.\\n\uCCA0\uC744 \uB450\uB4DC\uB9AC\uB294
+    \uC18C\uB9AC\uAC00 \uB2F4\uC7A5\uC744 \uB118\uAE30 \uC2DC\uC791\uD569\uB2C8\uB2E4.\\n\uACBD\uBE44\uB300\uC758
+    \uAC11\uC637\uC740 \uACAC\uACE0\uD574\uC9C0\uACE0 \uBAA8\uD5D8\uAC00\uB4E4\uC758
+    \uBB34\uAE30\uB294 \uC608\uB9AC\uD574\uC9D1\uB2C8\uB2E4."

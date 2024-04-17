@@ -13,9 +13,16 @@ MonoBehaviour:
   m_Name: CastleLevel3
   m_EditorClassIdentifier: 
   upGradeEveryTurnGold: 0
-  upGradeGold: 0
-  upGradeFaithAffectValue: 0
-  upGradeCulturalAffectValue: 0
+  upGradeGold: -150
+  upGradeFaithAffectValue: 2
+  upGradeCulturalAffectValue: 3
   upGradeSafetyAffectValue: 0
-  upGradeHappyAffectValue: 0
-  upGradeDescription: sadasd
+  upGradeHappyAffectValue: 2
+  upGradeDescription: "\uC790\uC2E0\uC758 \uC5F0\uAD6C\uACB0\uACFC\uB97C \uBC1C\uD45C\uD558\uBA70
+    \uBB34\uC791\uC704 \uD1A0\uB860\uC744 \uBC8C\uC785\uB2C8\uB2E4.\\n'\uD558\uBE0C\uB8E8\uD0C0'\uB77C\uACE0
+    \uBA85\uBA85\uB41C \uC774 \uD559\uC220\uD68C\uB294\\n\uB9CE\uC740 \uC774\uB4E4\uB85C
+    \uD558\uC5EC\uAE08 \uAE30\uC220 \uBC1C\uB2EC\uC744 \uCD08\uB798\uD569\uB2C8\uB2E4.\\n\uC5F4\uBA85\uC758
+    \uC778\uBD80\uAC00 \uD55C\uB9C8\uB9AC\uC758 \uB9D0\uB85C \uB300\uCCB4\uB418\uBA70
+    \uC0DD\uC0B0\uC131\uC740 \uB192\uC544\uC9D1\uB2C8\uB2E4.\\n\uD558\uC9C0\uB9CC
+    \uC601\uC8FC\uBBFC\uB4E4\uC740 \uC774\uB97C \uC2E0\uC758 \uC740\uCD1D\uC774\uB77C
+    \uBC1B\uB4E4\uACA0\uC9C0\uC694."

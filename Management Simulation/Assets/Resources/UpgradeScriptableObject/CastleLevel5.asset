@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9203334db415f634db6f14c8dd26fcd8, type: 3}
   m_Name: CastleLevel5
   m_EditorClassIdentifier: 
-  upGradeEveryTurnGold: 0
-  upGradeGold: 0
+  upGradeEveryTurnGold: 4
+  upGradeGold: -250
   upGradeFaithAffectValue: 0
-  upGradeCulturalAffectValue: 0
-  upGradeSafetyAffectValue: 0
-  upGradeHappyAffectValue: 0
-  upGradeDescription: 
+  upGradeCulturalAffectValue: 5
+  upGradeSafetyAffectValue: 3
+  upGradeHappyAffectValue: 2
+  upGradeDescription: "\uACE0\uB3C4\uB85C \uBC1C\uB2EC\uB41C \uACFC\uD559\uACFC \uADF8
+    \uACFC\uD559\uC744 \uBC14\uD0D5\uC73C\uB85C \uBE5A\uC5B4\uB0B8 \uACF5\uD559\uC740
+    \uD761\uC0AC \uB9C8\uBC95\uACFC\uB3C4 \uAC19\uC2B5\uB2C8\uB2E4.\\n\uB9C8\uBC95\uACFC\uB3C4
+    \uAC19\uC740 \uACFC\uD559 \uC544\uB798 \uB9C8\uC744 \uC0AC\uB78C\uB4E4\uC740
+    \uD3B8\uC758\uC5D0 \uB208\uC744 \uB730 \uAC83\uC774\uACE0\\n\uACF3\uAC04\uC740
+    \uCC9C\uCC9C\uD788 \uAC00\uB4DD \uCC30 \uAC83\uC785\uB2C8\uB2E4.\\n\uC774\uC81C
+    \uC601\uC9C0\uBBFC\uB4E4\uB3C4 \uC790\uC2E0\uB9CC\uC758 \uACF5\uBD80\uB97C \uC2DC\uC791\uD569\uB2C8\uB2E4."

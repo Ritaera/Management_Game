@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9203334db415f634db6f14c8dd26fcd8, type: 3}
   m_Name: Cathedral5
   m_EditorClassIdentifier: 
-  upGradeEveryTurnGold: 0
-  upGradeGold: 0
-  upGradeFaithAffectValue: 0
-  upGradeCulturalAffectValue: 0
-  upGradeSafetyAffectValue: 0
-  upGradeHappyAffectValue: 0
-  upGradeDescription: 
+  upGradeEveryTurnGold: -5
+  upGradeGold: -300
+  upGradeFaithAffectValue: 5
+  upGradeCulturalAffectValue: -5
+  upGradeSafetyAffectValue: 5
+  upGradeHappyAffectValue: 5
+  upGradeDescription: "\uC601\uC9C0\uBBFC\uB4E4\uC758 \uC2E0\uC559\uC774 \uD55C \uACF3\uC73C\uB85C
+    \uBAA8\uC785\uB2C8\uB2E4.\\n\uB2E4\uC591\uD55C \uAD50\uB9AC\uB4E4\uC774 \uC815\uB9BD\uB418\uACE0
+    \uBAA8\uB4E0 \uC774\uB4E4\uC740 \uC885\uAD50\uB97C \uAC16\uAC8C \uB429\uB2C8\uB2E4.\\n\uADF8\uB4E4\uC740
+    \uC2A4\uC2A4\uB85C\uB97C \uC601\uC9C0\uBBFC\uC774 \uC544\uB2CC \uC2E0\uC790\uB77C\uACE0
+    \uC0DD\uAC01\uD569\uB2C8\uB2E4.\\n\uBC95\uC73C\uB85C \uAC15\uC81C\uB418\uB358
+    \uAC83\uB4E4\uB3C4 \uC2E0\uC559\uC758 \uC774\uB984\uC544\uB798 \uB3C4\uB355\uC774
+    \uB418\uC5C8\uACE0\\n\uADF8 \uBB34\uC5C7\uBCF4\uB2E4 \uC2E0\uC774 \uC6B0\uC120\uC2DC\uB429\uB2C8\uB2E4."

@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9203334db415f634db6f14c8dd26fcd8, type: 3}
   m_Name: Bank4
   m_EditorClassIdentifier: 
-  upGradeEveryTurnGold: 4
-  upGradeGold: 4
-  upGradeFaithAffectValue: 4
-  upGradeCulturalAffectValue: 4
-  upGradeSafetyAffectValue: 4
-  upGradeHappyAffectValue: 4
-  upGradeDescription: ffffffffffffffff
+  upGradeEveryTurnGold: 400
+  upGradeGold: -200
+  upGradeFaithAffectValue: 0
+  upGradeCulturalAffectValue: 0
+  upGradeSafetyAffectValue: 0
+  upGradeHappyAffectValue: 0
+  upGradeDescription: "\uC740\uD589\uC740 \uC790\uBCF8\uC744 \uBC14\uD0D5\uC73C\uB85C
+    \uC8FC\uBCC0 \uC601\uC9C0\uC5D0 \uACF5\uACA9\uC801\uC778 \uD22C\uC790\uB97C \uD1B5\uD574\\n\uCEE4\uB2E4\uB780
+    \uC774\uC775\uC744 \uAC00\uC838\uC654\uC2B5\uB2C8\uB2E4.\\n\uC740\uD589\uC758
+    \uCD5C\uB300 \uD22C\uC790\uC790\uC778 \uB2F9\uC2E0\uC740\\n\uADF8\uB9CC\uD07C\uC758
+    \uC774\uC775\uC744 \uBD24\uACA0\uB124\uC694.\\n\uD558\uC9C0\uB9CC \uBA85\uC2EC\uD558\uC2ED\uC2DC\uC624.\\n\uB2F9\uC2E0\uC758
+    \uC774\uC775\uC740 \uACE7 \uB204\uAD70\uAC00\uC758 \uC190\uD574\uC774\uBA70\\n\uC545\uC758\uB97C
+    \uD488\uC740 \uC0AC\uB78C\uC774 \uC788\uC744\uC9C0\uB3C4 \uBAA8\uB978\uB2E4\uB294
+    \uAC83\uC744"

@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9203334db415f634db6f14c8dd26fcd8, type: 3}
   m_Name: blacksmithLevel4
   m_EditorClassIdentifier: 
-  upGradeEveryTurnGold: 0
-  upGradeGold: 0
+  upGradeEveryTurnGold: 15
+  upGradeGold: -200
   upGradeFaithAffectValue: 0
   upGradeCulturalAffectValue: 0
-  upGradeSafetyAffectValue: 0
-  upGradeHappyAffectValue: 0
-  upGradeDescription: 
+  upGradeSafetyAffectValue: 2
+  upGradeHappyAffectValue: 2
+  upGradeDescription: "\uACBD\uD5D8\uC801\uC73C\uB85C \uB9CC\uB4E4\uC5C8\uB358 \uB3C4\uAD6C\uB4E4\uC774
+    \uC810\uC810 \uADDC\uACA9\uD654\uB429\uB2C8\uB2E4.\\n\uADDC\uACA9\uD654\uB41C
+    \uB3C4\uAD6C\uB4E4\uC740 \uACB0\uAD6D \uC6B0\uB9AC \uB9C8\uC744\uC758 \uC0C1\uC9D5\uC774
+    \uB429\uB2C8\uB2E4."

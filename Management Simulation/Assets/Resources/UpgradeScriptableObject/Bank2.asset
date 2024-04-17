@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9203334db415f634db6f14c8dd26fcd8, type: 3}
   m_Name: Bank2
   m_EditorClassIdentifier: 
-  upGradeEveryTurnGold: 2
-  upGradeGold: 2
-  upGradeFaithAffectValue: 2
-  upGradeCulturalAffectValue: 2
-  upGradeSafetyAffectValue: 2
-  upGradeHappyAffectValue: 2
-  upGradeDescription: lllllllllllll
+  upGradeEveryTurnGold: 200
+  upGradeGold: -100
+  upGradeFaithAffectValue: 0
+  upGradeCulturalAffectValue: 0
+  upGradeSafetyAffectValue: 0
+  upGradeHappyAffectValue: 0
+  upGradeDescription: "\uB3C8\uC774\uB780 \uB3CC\uACE0 \uB3C4\uB294 \uBC95.\\n\uADF8\uB9AC\uACE0
+    \uB3CC\uACE0 \uB3C4\uB294 \uB3C8 \uB9CC\uD07C \uBE60\uB978 \uAC83\uB3C4.\\n\uBE60\uB978
+    \uB9CC\uD07C \uBB34\uC11C\uC6B4 \uAC83\uB3C4 \uC5C6\uC8E0.\\n\uD22C\uC790\uAE08\uC740
+    \uC5B4\uB290\uC0CC\uAC00 \uC774\uC790\uAC00 \uBD99\uC5B4 \uB3CC\uC544\uC654\uAD70\uC694."

@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: GuildLevel3
   m_EditorClassIdentifier: 
   upGradeEveryTurnGold: 0
-  upGradeGold: 0
+  upGradeGold: -150
   upGradeFaithAffectValue: 0
   upGradeCulturalAffectValue: 0
   upGradeSafetyAffectValue: 0
-  upGradeHappyAffectValue: 0
-  upGradeDescription: 
+  upGradeHappyAffectValue: 1
+  upGradeDescription: "\uC815\uADDC\uAD70\uC5D0 \uB4E4\uC5B4\uAC00\uC9C0 \uBABB\uD55C
+    \uC0AC\uB78C\uB4E4\uC774 \uBAA8\uC5EC\\n\uAE38\uB4DC\uC758 \uC804\uD22C\uC6D0\uC774
+    \uB429\uB2C8\uB2E4.\\n\uB610 \uC5B4\uB5A4\uC774\uB294 \uADF8\uB4E4\uC758 \uC790\uC720\uB85C\uC6C0\uC5D0
+    \uBC18\uD574\\n\uC815\uADDC\uAD70\uBCF4\uB2E4 \uAE38\uB4DC\uC6D0\uC744 \uAFC8\uAFB8\uAE30\uB3C4
+    \uD569\uB2C8\uB2E4. "

@@ -77,11 +77,8 @@ public class UIStatus : MonoBehaviour
         // 날짜 골드 수량 업데이트.
         _date.text = $"<color=red>날짜 : {GameManager.instance.Date}</color>";
         _gold.text = $"<color=yellow>골드 : {GameManager.instance.Gold}</color>";
-        // 다음낳 바뀔 수량들 업데이트.
-        _nextUpDown.text = $"<color=red>다음날 증감량</color> \n<color=yellow>골드 : {(GameManager.instance.NextTurnGold > 0 ? "+" : "")}{GameManager.instance.NextTurnGold}</color> " +
-            $"/ <color=blue>치안 : {(GameManager.instance.NextTurnSafety > 0 ? "+" : "")}{GameManager.instance.NextTurnSafety}</color> " +
-            $"/ <color=white>신앙 : {(GameManager.instance.NextTurnBelief > 0 ? "+" : "")}{GameManager.instance.NextTurnBelief}</color> " +
-            $"/ <color=purple>문화 : {(GameManager.instance.NextTurnCulture > 0 ? "+" : "")} {GameManager.instance.NextTurnCulture}</color>";
+        // 다음날 바뀔 수량들 업데이트.
+        _nextUpDown.text = $"<color=red>다음날 증감량\n</color><color=yellow>골드 : {(GameManager.instance.NextTurnGold > 0 ? "+" : "")}{GameManager.instance.NextTurnGold}</color> / <color=#01DFD7>치안 : {(GameManager.instance.NextTurnSafety > 0 ? "+" : "")}{GameManager.instance.NextTurnSafety}</color> / <color=white>신앙 : {(GameManager.instance.NextTurnBelief > 0 ? "+" : "")}{GameManager.instance.NextTurnBelief}</color> / <color=#AC58FA>문화 : {(GameManager.instance.NextTurnCulture > 0 ? "+" : "")}{GameManager.instance.NextTurnCulture}</color> <color=#FA58F4>/행복 : {(GameManager.instance.NextTurnHappy > 0 ? "+" : "")}{GameManager.instance.NextTurnHappy}</color>";
         // Status 숫자 표기 업데이트.
         _happyText.text = $"{GameManager.instance.HappyPoint.Value}";
         _safetyText.text =$"{GameManager.instance.SafetyPoint.Value}";
