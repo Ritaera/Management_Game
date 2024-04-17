@@ -89,7 +89,7 @@ public class GameManager : SingletonMonoBase<GameManager>
     }
     private void Update()
     {
-        PointUpdate();
+        //PointUpdate();
     }
 
     // Jang => CardScriptableObject에서 instance 호출을 통해 Coroutine을 하려했으나 불가능해서
