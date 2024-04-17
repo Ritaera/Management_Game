@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f65c347a19fbc4d4083df56933be0498
+guid: 3b87ec3b4b980734d85f043317cf82f6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8381584721745538236
-    second: idks-removebg-preview_0
+      213: 4192952605163695994
+    second: sky 5_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: idks-removebg-preview_0
+      name: sky 5_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
-        width: 755
-        height: 294
+        y: 0
+        width: 1830
+        height: 509
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 44314856a11aeab80800000000000000
-      internalID: -8381584721745538236
+      spriteID: a7fa4dedd2c503a30800000000000000
+      internalID: 4192952605163695994
       vertices: []
       indices: 
       edges: []
@@ -130,8 +156,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      idks-removebg-preview_0: -8381584721745538236
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

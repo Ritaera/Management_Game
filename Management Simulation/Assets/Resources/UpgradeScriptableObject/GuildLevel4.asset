@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: GuildLevel4
   m_EditorClassIdentifier: 
   upGradeEveryTurnGold: 8
-  upGradeGold: -200
+  upGradeGold: 200
   upGradeFaithAffectValue: 0
   upGradeCulturalAffectValue: 0
   upGradeSafetyAffectValue: 2
   upGradeHappyAffectValue: 1
-  upGradeDescription: "\uC0AC\uB78C\uC774 \uBAA8\uC77C\uC218\uB85D \uAE38\uB4DC\uC758
-    \uCCB4\uACC4\uAC00 \uACAC\uACE0\uD574\uC9D1\uB2C8\uB2E4.\\n\uAE38\uB4DC\uC758
-    \uAC74\uBB3C\uC740 \uCEE4\uC9C0\uACE0 \uAC01\uC790 \uBD80\uC11C\uAC00 \uB098\uB269\uB2C8\uB2E4.\\n\uADDC\uBAA8\uAC00
-    \uCEE4\uC9C4 \uB9CC\uD07C \uB0A9\uBD80\uD558\uB294 \uC138\uAE08\uB3C4 \uB9CE\uC544\uC9C0\uACA0\uB124\uC694."
+  upGradeDescription: "\uC0AC\uB78C\uC774 \uBAA8\uC5EC \uAE38\uB4DC\uC758 \uCCB4\uACC4\uAC00
+    \uACAC\uACE0\uD574\uC9D1\uB2C8\uB2E4.  \uBCF4\uB2E4 \uB354 \uC804\uBB38\uC801\uC778
+    \uC6B4\uC601\uC744 \uC2DC\uC791\uD569\uB2C8\uB2E4."

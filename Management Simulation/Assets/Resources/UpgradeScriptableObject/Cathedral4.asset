@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Cathedral4
   m_EditorClassIdentifier: 
   upGradeEveryTurnGold: 15
-  upGradeGold: -200
-  upGradeFaithAffectValue: 0
-  upGradeCulturalAffectValue: 2
+  upGradeGold: 200
+  upGradeFaithAffectValue: 2
+  upGradeCulturalAffectValue: 0
   upGradeSafetyAffectValue: 0
   upGradeHappyAffectValue: 2
-  upGradeDescription: "\uACBD\uD5D8\uC801\uC73C\uB85C \uB9CC\uB4E4\uC5C8\uB358 \uB3C4\uAD6C\uB4E4\uC774
-    \uC810\uC810 \uADDC\uACA9\uD654\uB429\uB2C8\uB2E4.\\n\uADDC\uACA9\uD654\uB41C
-    \uB3C4\uAD6C\uB4E4\uC740 \uACB0\uAD6D \uC6B0\uB9AC \uB9C8\uC744\uC758 \uC0C1\uC9D5\uC774
-    \uB429\uB2C8\uB2E4."
+  upGradeDescription: "\uBBFF\uC74C\uC774 \uAE4A\uC5B4\uC9C0\uBA70 \uAD50\uC8FC\uB97C
+    \uC120\uCD9C\uD569\uB2C8\uB2E4. \uAD50\uC8FC\uB294 \uBAA8\uB450\uB97C \uC774\uB04C\uBA70
+    \uB354\uC6B1 \uC2E0\uC2E4\uD55C \uC0B6\uC744 \uAFB8\uB824\uB098\uAC08 \uAC83\uC785\uB2C8\uB2E4."

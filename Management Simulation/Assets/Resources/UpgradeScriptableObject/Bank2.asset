@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: Bank2
   m_EditorClassIdentifier: 
   upGradeEveryTurnGold: 200
-  upGradeGold: -100
+  upGradeGold: 100
   upGradeFaithAffectValue: 0
   upGradeCulturalAffectValue: 0
   upGradeSafetyAffectValue: 0
   upGradeHappyAffectValue: 0
-  upGradeDescription: "\uB3C8\uC774\uB780 \uB3CC\uACE0 \uB3C4\uB294 \uBC95.\\n\uADF8\uB9AC\uACE0
-    \uB3CC\uACE0 \uB3C4\uB294 \uB3C8 \uB9CC\uD07C \uBE60\uB978 \uAC83\uB3C4.\\n\uBE60\uB978
-    \uB9CC\uD07C \uBB34\uC11C\uC6B4 \uAC83\uB3C4 \uC5C6\uC8E0.\\n\uD22C\uC790\uAE08\uC740
-    \uC5B4\uB290\uC0CC\uAC00 \uC774\uC790\uAC00 \uBD99\uC5B4 \uB3CC\uC544\uC654\uAD70\uC694."
+  upGradeDescription: "\uC740\uD589\uC5D0\uC11C \uB300\uCD9C \uC0C1\uD488\uC744 \uD310\uB9E4\uD558\uAE30
+    \uC2DC\uC791\uD569\uB2C8\uB2E4. "

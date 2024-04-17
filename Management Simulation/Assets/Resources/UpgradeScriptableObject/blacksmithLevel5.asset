@@ -13,14 +13,11 @@ MonoBehaviour:
   m_Name: blacksmithLevel5
   m_EditorClassIdentifier: 
   upGradeEveryTurnGold: 20
-  upGradeGold: -300
+  upGradeGold: 300
   upGradeFaithAffectValue: 0
   upGradeCulturalAffectValue: 5
   upGradeSafetyAffectValue: 0
   upGradeHappyAffectValue: 2
   upGradeDescription: "\uB300\uC7A5\uAC04\uC758 \uC778\uAE30\uB294 \uADF8\uB4E4\uC758
-    \uBAA8\uB8E8\uCC98\uB7FC \uC2DD\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.\\n\uD0C0\uC624\uB974\uB294
-    \uBD88\uAE38\uB9CC\uD07C \uC7A5\uC778\uC758 \uB540\uC740 \uD750\uB974\uACE0\\n\uD758\uB9B0
-    \uB540 \uB9CC\uD07C \uB3C4\uAD6C\uB4E4\uC740 \uBE5B\uC744 \uB0C5\uB2C8\uB2E4.\\n\uC2E0\uC758
-    \uC190\uAE38\uC774 \uB2FF\uC9C0 \uC54A\uB294 \uD55C \uB354 \uC774\uC0C1\uC758
-    \uBC1C\uC804\uC740 \uC5B4\uB824\uC6B8\uD14C\uC8E0."
+    \uBAA8\uB8E8\uCC98\uB7FC \uC2DD\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.    \uD0C0\uC624\uB974\uB294
+    \uBD88\uAE38\uB9CC\uD07C \uB3C4\uAD6C\uB4E4\uC740 \uBE5B\uC744 \uB0C5\uB2C8\uB2E4.    "
