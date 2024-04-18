@@ -5,15 +5,32 @@ using UnityEngine.SceneManagement;
 public class SoundManager : SingletonMonoBase<SoundManager>
 {
 
-    private void Start()
+
+    override protected void Awake()
     {
-        if (SceneManager.GetActiveScene().name == "GameScene1")
-        {
-            BgmAuioSource.Stop();
-        }
-        else if (SceneManager.GetActiveScene().name == "Main")
+        base.Awake();
+        DontDestroyOnLoad(gameObject);
+    }
+        private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "StartScene")
         {
             BgmAuioSource.clip = BgmAudioClip[0];
+            BgmAuioSource.Play();
+        }
+        else if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            BgmAuioSource.clip = BgmAudioClip[1];
+            BgmAuioSource.Play();
+        }
+        else if (SceneManager.GetActiveScene().name == "GamePlay")
+        {
+            BgmAuioSource.clip = BgmAudioClip[2];
+            BgmAuioSource.Play();
+        }
+        else if (SceneManager.GetActiveScene().name == "GameOver")
+        {
+            BgmAuioSource.clip = BgmAudioClip[3];
             BgmAuioSource.Play();
         }
     }

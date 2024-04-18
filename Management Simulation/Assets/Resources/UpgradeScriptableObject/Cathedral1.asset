@@ -17,6 +17,6 @@ MonoBehaviour:
   upGradeFaithAffectValue: 0
   upGradeCulturalAffectValue: 0
   upGradeSafetyAffectValue: 0
-  upGradeHappyAffectValue: 30
+  upGradeHappyAffectValue: 3
   upGradeDescription: "\uC774\uB984 \uBAA8\uB97C \uC11D\uC0C1\uC744 \uD5A5\uD574
     \uAE30\uB3C4\uD558\uAE30 \uC2DC\uC791\uD569\uB2C8\uB2E4."

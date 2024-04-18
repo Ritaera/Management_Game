@@ -28,6 +28,7 @@ public class UITurnEnd : MonoBehaviour
 
     CardManager _cardManager;
     UIStatus _uIStatus;
+    UIEndingScene _uIEndingScene;
 
     private void Awake()
     {
@@ -70,7 +71,7 @@ public class UITurnEnd : MonoBehaviour
         //_cardTurn.text = "턴수:" + scriptable.cardAffectTurn.ToString() + "신앙:" + scriptable.cardFaithAffectValue.ToString() +
         //                 "문화:" + scriptable.cardCulturalAffectValue.ToString() + "골드:" + scriptable.cardGoldAffectValue.ToString() +
         //                 "치안:" + scriptable.cardSafetyAffectValue.ToString() + "행복:" + scriptable.cardHappyAffectValue.ToString();
-        _cardImage = scriptable.cardImage;
+        _cardImage.sprite = scriptable.cardImage;
     }
 
 
@@ -80,6 +81,7 @@ public class UITurnEnd : MonoBehaviour
         // 애니메이션 진행중에는 버튼 클릭이 비활성화 해야함. 2번째 버튼클릭을 한다면, 다음턴 실행.
         if (IsCardAnimationEnd)
         {
+            SoundManager.instance.SfxAuioSource.clip = SoundManager.instance.SfxAuioClip[1];
             _panel.SetActive(false);  // 캠버스 비활성화.
 
             _nextTurnButton.gameObject.SetActive(true);  // 다음날 버튼 활성화.
@@ -98,16 +100,19 @@ public class UITurnEnd : MonoBehaviour
     // KJH => 다음날 버튼 눌렀을때 이 함수 호출.
     public void TurnEndButtonClick()
     {
-        if (GameManager.instance.Date > 30 || GameManager.instance.HappyPoint.Value <= 0 || 
-            GameManager.instance.SafetyPoint.Value <= 0 || GameManager.instance.Gold <= 0)
+        SoundManager.instance.SfxAuioSource.clip = SoundManager.instance.SfxAuioClip[0];
+ 
+        Utils.LogGreen(GameManager.instance.Gold);
+        _panel.SetActive(true);  // 캠버스 활성화.
+        _cardManager.SelectCard();
+        _cardSystem.SetActive(false); // 카드시스템 비활성화.
+
+        if (GameManager.instance.Date >= 31 || GameManager.instance.HappyPoint.Value <= 0 ||
+        GameManager.instance.SafetyPoint.Value <= 0 || GameManager.instance.Gold <= 0)
         {
             SceneManagers.LoadScenes(MoveScene.EndGame);
         }
 
-
-        _panel.SetActive(true);  // 캠버스 활성화.
-        _cardManager.SelectCard();
-        _cardSystem.SetActive(false); // 카드시스템 비활성화.
         _nextDay.gameObject.SetActive(true);  // 다음날 Text 활성화.
         _nextTurnButton.gameObject.SetActive(false);  // 다음날 버튼 비활성화.
         StartCoroutine(C_TurnStart(3));  // 코루틴 시작.

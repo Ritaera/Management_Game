@@ -5,6 +5,7 @@ public interface SceneManagers
     {
         None,
         Main,
+        Tutorial,
         InGame,
         EndGame,
     }
@@ -22,6 +23,9 @@ public interface SceneManagers
                 break;
             case MoveScene.Main:
                 SceneManager.LoadScene("StartScene");
+                break;
+            case MoveScene.Tutorial:
+                SceneManager.LoadScene("Tutorial");
                 break;
             case MoveScene.InGame:
                 SceneManager.LoadScene("GamePlay");

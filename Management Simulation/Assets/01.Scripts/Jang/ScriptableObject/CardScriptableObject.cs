@@ -6,7 +6,7 @@ public class CardScriptableObject : ScriptableObject
 {
     public Image cardBackgroundImage; // 카드 백그라운드 
 
-    public Image cardImage; // 카드 내용의 배경
+    public Sprite cardImage; // 카드 내용의 배경
 
     public int cardAffectTurn; // 카드가 영향을 미치는 턴.
 

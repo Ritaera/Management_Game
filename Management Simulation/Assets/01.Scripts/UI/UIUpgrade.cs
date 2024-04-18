@@ -69,7 +69,7 @@ public class UIUpgrade : MonoBehaviour
         _accapt.interactable = true;
 
         // 예외 처리(오류).
-        if (_playerController.GetHitName() == PlayerController2.EHitName.None)
+        if (_playerController.GetHitName() == PlayerController2.EHitName.None || _playerController.GetHitName() == PlayerController2.EHitName.Heize)
         {
             Utils.LogRed("_playerController.GetHitName()에서 None을 반환하면 안됨.");
             return;
@@ -111,6 +111,7 @@ public class UIUpgrade : MonoBehaviour
 
     public void AccaptButtonClick()
     {
+        SoundManager.instance.SfxAuioSource.clip = SoundManager.instance.SfxAuioClip[0];
         if (upgradeScriptableObject == null)
         {
             _upgradeCost.text = "<color=red>강화를 모두 소진했습니다.</color>";
@@ -208,6 +209,7 @@ public class UIUpgrade : MonoBehaviour
     }
     public void CancelButtonClick()
     {
+        SoundManager.instance.SfxAuioSource.clip = SoundManager.instance.SfxAuioClip[0];
         _popUpBase.SetActive(false);
         _barrier.SetActive(false);
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static SceneManagers;
 
 // Jang => https://www.notion.so/01_12-PlayerScript-d94013ad7f754c48b851c51bfa1cc5dd?pvs=4#a971918a79084f7a94582e7327e8566e 
 // 유니티 2D 수업 코드를 Update, fixedupdate 를 최대한 사용하지 않고 정리
@@ -13,7 +14,7 @@ public class PlayerController2 : MonoBehaviour
 {
     public enum EHitName
     {
-        SamSmith, Maria, Hani, Hyeji, Banksy, None
+        SamSmith, Maria, Hani, Hyeji, Banksy, Heize, None
     }
 
     UIUpgrade _uIUpgrade;
@@ -84,6 +85,7 @@ public class PlayerController2 : MonoBehaviour
         hitNamePair.TryAdd("Hani", EHitName.Hani);
         hitNamePair.TryAdd("Hyeji", EHitName.Hyeji);
         hitNamePair.TryAdd("Banksy", EHitName.Banksy);
+        hitNamePair.TryAdd("Heize", EHitName.Heize);
     }
 
     void Update()
@@ -130,7 +132,14 @@ public class PlayerController2 : MonoBehaviour
                 //_hitName = hit2.collider.name;
                 HitName = hit2.collider.name;
                 Utils.Log(HitName);
-                _uIUpgrade.Upgrade();
+                if (HitName != "Heize")
+                {
+                    _uIUpgrade.Upgrade();
+                }
+                else
+                    SceneManagers.LoadScenes(MoveScene.InGame);
+                
+
             }
         }
     }

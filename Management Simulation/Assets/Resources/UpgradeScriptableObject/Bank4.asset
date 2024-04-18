@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9203334db415f634db6f14c8dd26fcd8, type: 3}
   m_Name: Bank4
   m_EditorClassIdentifier: 
-  upGradeEveryTurnGold: 400
+  upGradeEveryTurnGold: 20
   upGradeGold: 200
   upGradeFaithAffectValue: 0
   upGradeCulturalAffectValue: 0

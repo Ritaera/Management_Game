@@ -25,7 +25,6 @@ public class GameManager : SingletonMonoBase<GameManager>
     public GameFloat CulturePoint = new GameFloat();
 
     [SerializeField]
-    private int _gold = 0;
     private int _date = 0;
     private int _count = 0;
 
@@ -52,17 +51,9 @@ public class GameManager : SingletonMonoBase<GameManager>
     #endregion
 
     #region 프로퍼티
-    public int Gold
-    {
-        get
-        {
-            return _gold;
-        }
-        set
-        {
-            _gold = value;
-        }
-    }
+    [SerializeField]
+    public int Gold { get; private set; } = 200;
+    
     public int Date
     {
         get
@@ -172,7 +163,7 @@ public class GameManager : SingletonMonoBase<GameManager>
         SafetyPoint.Value += NextTurnSafety;
         BeliefPoint.Value += NextTurnBelief;
         CulturePoint.Value += NextTurnCulture;
-        _gold += NextTurnGold;
+        Gold += NextTurnGold;
     }
     public void AddUpgradeList(UpgradeScriptableObject upgradeScriptableObject)
     {
@@ -197,6 +188,6 @@ public class GameManager : SingletonMonoBase<GameManager>
         NextTurnCulture += upgradeScriptableObject.upGradeCulturalAffectValue;
 
         // 건물 업그레이드 강화시 사용할 골드
-        _gold -= upgradeScriptableObject.upGradeGold;
+        Gold -= upgradeScriptableObject.upGradeGold;
     }
 }

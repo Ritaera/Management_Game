@@ -28,6 +28,7 @@ public class UIStartSetting : MonoBehaviour
     // KJH => 취소버튼 클릭시 호출 함수.
     public void CancelButtonClick()
     {
+        SoundManager.instance.SfxAuioSource.clip = SoundManager.instance.SfxAuioClip[0];
         _panel.SetActive(false);
     }
 
@@ -48,6 +49,7 @@ public class UIStartSetting : MonoBehaviour
     // KJH =>  설정 버튼 눌렀을때 이 함수 호출.
     public void SettingButtonClick()
     {
+        SoundManager.instance.SfxAuioSource.clip = SoundManager.instance.SfxAuioClip[0];
         _panel.SetActive(true);
     }
 
