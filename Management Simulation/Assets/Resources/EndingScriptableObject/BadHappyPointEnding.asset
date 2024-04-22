@@ -9,7 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3a8241a6c1c8c142a0bfd0ca96089e5, type: 3}
+  m_Script: {fileID: 11500000, guid: f9a88ec44a7712c48baca499d9ea9c2c, type: 3}
   m_Name: BadHappyPointEnding
   m_EditorClassIdentifier: 
-  endingDescription: 
+  endingImage:
+  - {fileID: 1658447823352555518, guid: dbf26fd0f21c8ba4da0328fc7e3596f8, type: 3}
+  - {fileID: -1389865272890066460, guid: d62955b620414d3439d14bc25d67c01a, type: 3}
+  - {fileID: -4334378377954144726, guid: e5bf7e6df47f9ae488534c5ec0fb450f, type: 3}
+  endingDescription: "\uC5B8\uC81C\uBD80\uD130\uC600\uC744\uAE4C\uC694. \uC601\uC9C0\uBBFC\uB4E4\uC758
+    \uC5BC\uAD74\uC5D0 \uC6C3\uC74C \uAF43\uC774 \uC0AC\uB77C\uC9C4 \uAC83\uC740,\r\n\uC55E\uB9CC
+    \uBCF4\uBA70 \uB2EC\uB824\uC628 \uB2F9\uC2E0\uC740 \uAC00\uC7A5 \uC911\uC694\uD55C
+    \uAC83\uC744 \uB193\uCCE4\uC744\uC9C0\uB3C4 \uBAA8\uB985\uB2C8\uB2E4.,\r\n\uC774\uB807\uAC8C\uB294
+    \uC0B4 \uC218 \uC5C6\uB2E4., \uB354 \uC774\uC0C1\uC740 \uC548\uB418\uACA0\uB2E4.
+    ,\r\n\uC601\uC9C0\uBBFC\uB4E4\uC740 \uBC2D\uC744 \uAC08\uB358 \uAC08\uD034\uB97C
+    \uB4E4\uACE0 \uB2F9\uC2E0\uC5D0\uAC8C\uB85C \uD5A5\uD569\uB2C8\uB2E4.,\r\n\uB9C8\uB3D9\uC11D\uD615..
+    \uB3C4\uC640\uC8FC\uC138\uC694.,\r\n-Bad Ending-. "

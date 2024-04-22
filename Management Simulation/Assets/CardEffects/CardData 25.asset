@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: CardData 25
   m_EditorClassIdentifier: 
   cardBackgroundImage: {fileID: 0}
-  cardImage: {fileID: 0}
+  cardImage: {fileID: -6074329537870968652, guid: 6be9c86943842084f9e81b293c618c0b, type: 3}
   cardAffectTurn: 1
-  cardFaithAffectValue: -20
-  cardCulturalAffectValue: 20
+  cardFaithAffectValue: -10
+  cardCulturalAffectValue: 10
   cardGoldAffectValue: 30
   cardSafetyAffectValue: 0
   cardHappyAffectValue: 10
   cardDescription: "\uAE30\uC220\uC774 \uBC1C\uC804\uB418\uC5C8\uC2B5\uB2C8\uB2E4.
     \uC601\uC8FC\uBBFC\uB4E4\uC740 \uB354\uB354\uC6B1 \uAC04\uD3B8\uD558\uAC8C \uBB3C\uC744
     \uC0AC\uC6A9\uD558\uACE0 \uBC24\uC5D0 \uBD88\uC744 \uBC1D\uD790 \uAC83\uC785\uB2C8\uB2E4."
+  isAlreadycomputation: 0

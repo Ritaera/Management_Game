@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9203334db415f634db6f14c8dd26fcd8, type: 3}
   m_Name: GuildLevel4
   m_EditorClassIdentifier: 
-  upGradeEveryTurnGold: 0
-  upGradeGold: 0
+  upGradeEveryTurnGold: 8
+  upGradeGold: 200
   upGradeFaithAffectValue: 0
   upGradeCulturalAffectValue: 0
-  upGradeSafetyAffectValue: 0
-  upGradeHappyAffectValue: 0
-  upGradeDescription: 
+  upGradeSafetyAffectValue: 2
+  upGradeHappyAffectValue: 1
+  upGradeDescription: "\uC0AC\uB78C\uC774 \uBAA8\uC5EC \uAE38\uB4DC\uC758 \uCCB4\uACC4\uAC00
+    \uACAC\uACE0\uD574\uC9D1\uB2C8\uB2E4.  \uBCF4\uB2E4 \uB354 \uC804\uBB38\uC801\uC778
+    \uC6B4\uC601\uC744 \uC2DC\uC791\uD569\uB2C8\uB2E4."

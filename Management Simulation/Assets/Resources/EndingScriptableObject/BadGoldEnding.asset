@@ -9,7 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3a8241a6c1c8c142a0bfd0ca96089e5, type: 3}
+  m_Script: {fileID: 11500000, guid: f9a88ec44a7712c48baca499d9ea9c2c, type: 3}
   m_Name: BadGoldEnding
   m_EditorClassIdentifier: 
-  endingDescription: 
+  endingImage:
+  - {fileID: 1658447823352555518, guid: dbf26fd0f21c8ba4da0328fc7e3596f8, type: 3}
+  - {fileID: -4334378377954144726, guid: e5bf7e6df47f9ae488534c5ec0fb450f, type: 3}
+  - {fileID: -1389865272890066460, guid: d62955b620414d3439d14bc25d67c01a, type: 3}
+  endingDescription: "\uC0AC\uB78C\uC740 \uC2DD\uBB3C\uC774 \uC544\uB2C8\uC8E0 \uD587\uBE5B\uACFC
+    \uBB3C \uBC14\uB78C\uC774 \uC788\uB2E4\uACE0 \uD55C\uB4E4 , \uC0B4\uC544\uB0A8\uC744
+    \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.,\uC544\uC8FC \uAC04\uB2E8\uD55C \uC0AC\uC2E4\uC784\uC744
+    \uB2F9\uC2E0\uC740 \uC78A\uC5B4\uBC84\uB9B0\uB4EF \uD569\uB2C8\uB2E4.\r\n\uC2DD\uB7C9\uC744
+    \uC0AC\uB294 \uAC83\uB3C4,\uC2EC\uC9C0\uC5B4 \uB3C8\uC744 \uBC84\uB294 \uAC83\uB3C4
+    ,\uBAA8\uB4E0 \uD589\uB3D9\uB4E4\uC5D0\uB294 \uD544\uC694 \uC790\uAE08\uC774\uB77C\uB294
+    \uAC83\uC774 \uC788\uB294 \uBC95\uC785\uB2C8\uB2E4.,\uBB34\uB108\uC9C4 \uC7AC\uC815\uC740
+    \uADF8 \uC5B4\uB5A4\uAC83\uB3C4 \uB3C4\uC6B8 \uC218 \uC5C6\uACA0\uB124\uC694.,\n\uC544!
+    \uB9C8\uB3D9\uC11D\uD615\uB3C4 \uB9CC\uB098\uB294\uAC78 \uAE4C\uBA39\uC73C\uBA74
+    \uC12D\uC12D\uD558\uC8E0.,\r\n-Bad Ending-,\r\n"
