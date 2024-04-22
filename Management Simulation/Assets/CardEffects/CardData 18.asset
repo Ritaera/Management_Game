@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CardData 18
   m_EditorClassIdentifier: 
   cardBackgroundImage: {fileID: 0}
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 3604192591476135790, guid: 9c951cda87e3c0e4f9da78b3eb2ca21d, type: 3}
   cardAffectTurn: 5
   cardFaithAffectValue: 4
   cardCulturalAffectValue: 0
@@ -25,3 +25,4 @@ MonoBehaviour:
     \uC2DC\uCCB4\uC758 \uC2E0\uC6D0\uB3C4, \uBC94\uC778\uB3C4 \uC54C \uC218 \uC5C6\uC5C8\uC2B5\uB2C8\uB2E4.          
     \uC601\uC8FC\uBBFC\uB4E4\uC758 \uACF5\uD3EC\uAC10\uC740 \uC26C\uC774 \uC0AC\uB77C\uC9C8
     \uAC83 \uAC19\uC9C0 \uC54A\uB124\uC694"
+  isAlreadycomputation: 0

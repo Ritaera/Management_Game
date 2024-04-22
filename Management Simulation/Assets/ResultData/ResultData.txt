@@ -1,0 +1,1 @@
+{"HappyPoint":-3.0,"SafetyPoint":24.0,"BeliefPoint":-36.0,"CulturePoint":59.0,"Gold":378,"Date":10}

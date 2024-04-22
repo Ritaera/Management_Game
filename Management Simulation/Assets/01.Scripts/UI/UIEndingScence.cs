@@ -1,3 +1,4 @@
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,6 +29,12 @@ public class UIEndingScene : MonoBehaviour
 
     public string loadEndingName = "";
 
+    // 게임 결과 데이터를 로드해 저장하는 변수.
+    public GameResultData gameResultData;
+
+    [SerializeField]
+    private string resultFilePath = "Assets/ResultData/Result.txt";
+
 
     private void Awake()
     {
@@ -38,42 +45,76 @@ public class UIEndingScene : MonoBehaviour
 
     void Start()
     {
-        // 해피엔딩
-        if (GameManager.instance.Date >= 31)
+        // 엔딩 씬 시작할 때 이전 씬에서 저장한 게임 결과 데이터를 로드.
+        LoadGameResultDataFromFile();
+
+        // 해피엔딩.
+        if (gameResultData.Date >= 31)
         {
-            if (GameManager.instance.BeliefPoint.Value >= 70 && GameManager.instance.CulturePoint.Value >= 70)
+            if (gameResultData.BeliefPoint >= 70 && gameResultData.CulturePoint >= 70)
             {
                 loadEndingName = "HappyBothEnding";
             }
-            else if (GameManager.instance.BeliefPoint.Value >= 70)
+            else if (gameResultData.BeliefPoint >= 70)
             {
                 loadEndingName = "HappyBeliefEnding";
             }
-            else if (GameManager.instance.CulturePoint.Value >= 70)
+            else if (gameResultData.CulturePoint >= 70)
             {
                 loadEndingName = "HappyCultureEnding";
             }
         }
 
         // 배드엔딩
-        if (GameManager.instance.HappyPoint.Value <= 0)
+        if (gameResultData.HappyPoint <= 0)
         {
             loadEndingName = "BadHappyPointEnding";
         }
-        else if (GameManager.instance.SafetyPoint.Value <= 0)
+        else if (gameResultData.SafetyPoint <= 0)
         {
             loadEndingName = "BadSafetyPointEnding";
         }
-        else if (GameManager.instance.Gold <= 0)
+        else if (gameResultData.Gold <= 0)
         {
             loadEndingName = "BadGoldEnding";
         }
 
-        
+        // 해피엔딩
+        //if (GameManager.instance.Date >= 31)
+        //{
+        //    if (GameManager.instance.BeliefPoint.Value >= 70 && GameManager.instance.CulturePoint.Value >= 70)
+        //    {
+        //        loadEndingName = "HappyBothEnding";
+        //    }
+        //    else if (GameManager.instance.BeliefPoint.Value >= 70)
+        //    {
+        //        loadEndingName = "HappyBeliefEnding";
+        //    }
+        //    else if (GameManager.instance.CulturePoint.Value >= 70)
+        //    {
+        //        loadEndingName = "HappyCultureEnding";
+        //    }
+        //}
+
+        //// 배드엔딩
+        //if (GameManager.instance.HappyPoint.Value <= 0)
+        //{
+        //    loadEndingName = "BadHappyPointEnding";
+        //}
+        //else if (GameManager.instance.SafetyPoint.Value <= 0)
+        //{
+        //    loadEndingName = "BadSafetyPointEnding";
+        //}
+        //else if (GameManager.instance.Gold <= 0)
+        //{
+        //    loadEndingName = "BadGoldEnding";
+        //}
+
+
 
         Utils.Log(loadEndingName);
 
-         _endingscript = Resources.Load<EndingScriptableObject>($"EndingScriptableObject/{loadEndingName}");
+        _endingscript = Resources.Load<EndingScriptableObject>($"EndingScriptableObject/{loadEndingName}");
 
         if (_endingscript == null)
         {
@@ -148,5 +189,9 @@ public class UIEndingScene : MonoBehaviour
         _nextCharTime = Time.time + delayBetweenChars;
     }
 
-
+    // 게임 결과 데이터 로드 함수.
+    void LoadGameResultDataFromFile()
+    {
+        gameResultData = JsonUtility.FromJson<GameResultData>(File.ReadAllText(resultFilePath));
+    }
 }

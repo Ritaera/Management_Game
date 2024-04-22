@@ -24,7 +24,7 @@ public class CardDataManager : MonoBehaviour
         }
     }
 
-    public CardScriptableObject[] cardData;
+    [SerializeField] public CardScriptableObject[] cardData;
     public UpgradeScriptableObject[] upgradeCardData;
 
     private Dictionary<string, UpgradeScriptableObject> upgradeCardDictionary;
@@ -35,6 +35,8 @@ public class CardDataManager : MonoBehaviour
     private void Awake()
     {
         upgradeCardDictionary = new Dictionary<string, UpgradeScriptableObject>();
+
+
 
         // 업그레이드용 카드 이름을 키(Key)로 하는 해시테이블 설정.
         foreach (var card in upgradeCardData)

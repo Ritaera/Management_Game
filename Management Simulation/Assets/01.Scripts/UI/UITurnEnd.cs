@@ -49,7 +49,7 @@ public class UITurnEnd : MonoBehaviour
 
         _cardDescription = transform.Find("Panel/CardSystem/Button - FrontCard/Description/Image/Text (TMP) - CardDescription").GetComponent<TMP_Text>();
         _cardTurn = transform.Find("Panel/CardSystem/Button - FrontCard/Turn/Image/Text (TMP) - CardTurn").GetComponent<TMP_Text>();
-        _cardImage = transform.Find("").GetComponent<Image>();
+        _cardImage = transform.Find("Panel/CardSystem/Button - FrontCard/Image - CardImage").GetComponent<Image>();
 
         _cardSystem = transform.Find("Panel/CardSystem").gameObject;
         _panel = transform.Find("Panel").gameObject;
@@ -102,7 +102,6 @@ public class UITurnEnd : MonoBehaviour
     {
         SoundManager.instance.SfxAuioSource.clip = SoundManager.instance.SfxAuioClip[0];
  
-        Utils.LogGreen(GameManager.instance.Gold);
         _panel.SetActive(true);  // 캠버스 활성화.
         _cardManager.SelectCard();
         _cardSystem.SetActive(false); // 카드시스템 비활성화.
@@ -110,6 +109,10 @@ public class UITurnEnd : MonoBehaviour
         if (GameManager.instance.Date >= 31 || GameManager.instance.HappyPoint.Value <= 0 ||
         GameManager.instance.SafetyPoint.Value <= 0 || GameManager.instance.Gold <= 0)
         {
+            // 결과 씬으로 넘어가기 전에 게임 데이터 결과 파일 저장.
+            GameManager.instance.SaveResultToJsonFile();
+
+            // 게임 결과 씬 로드.
             SceneManagers.LoadScenes(MoveScene.EndGame);
         }
 

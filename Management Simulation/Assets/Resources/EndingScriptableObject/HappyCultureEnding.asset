@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HappyCultureEnding
   m_EditorClassIdentifier: 
   endingImage:
-  - {fileID: 0}
+  - {fileID: -262974705450115325, guid: 05c28093a5ffa9c48a94e1531a018d41, type: 3}
   endingDescription: "\uC6B0\uB9AC\uC758 \uACFC\uD559\uACFC \uACF5\uD559\uC740 \uC8FC\uBCC0\uC601\uC9C0\uB97C
     \uB118\uC5B4 \uB300\uB959\uC5D0 \uD37C\uC9C0\uAC8C \uB429\uB2C8\uB2E4.,\r\n\uBAA8\uB4E0
     \uC0AC\uB78C\uB4E4\uC740 \uC6B0\uB9AC\uC5D0\uAC8C\uC11C \uBC30\uC6B0\uACE0\uC790

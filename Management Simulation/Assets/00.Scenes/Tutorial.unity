@@ -280,7 +280,7 @@ Transform:
   m_GameObject: {fileID: 44847924}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 52.138565, y: 3.1221914, z: 2.1451707}
+  m_LocalPosition: {x: 52.14, y: 3.1221914, z: 2.1451707}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5654,10 +5654,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<color=red>\uC774\uB3D9.</color>\nW / A / S / D  \uD639\uC740 \uD654\uC0B4\uD45C\uD0A4\n\n<color=red>NPC
-    \uC0C1\uD638\uC791\uC6A9.</color>\nG \uD0A4\n\n<color=red>\uBAA9\uD45C.</color>\n\uD589\uBCF5\uB3C4
-    \uCE58\uC548\uB3C4 \uACE8\uB4DC \uAC00 0 \uC774\uD558\uB85C\n\uB0B4\uB824\uAC00\uC9C0
-    \uB9D0\uACE0 30\uC77C \uBC84\uD2F0\uAE30.\n"
+  m_text: "<color=red>\uC774\uB3D9 , \uAE30\uB2A5.</color>\nW / A / S / D  \uD639\uC740
+    \uD654\uC0B4\uD45C\uD0A4 \nTAB / Spasbar\n\n<color=red>NPC \uC0C1\uD638\uC791\uC6A9.</color>\nG
+    \uD0A4\n\n<color=red>\uBAA9\uD45C.</color>\n\uD589\uBCF5\uB3C4 \uCE58\uC548\uB3C4
+    \uACE8\uB4DC \uAC00 0 \uC774\uD558\uB85C\n\uB0B4\uB824\uAC00\uC9C0 \uB9D0\uACE0
+    30\uC77C \uBC84\uD2F0\uAE30.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fcc522e9e76f7944c99d1365e5577335, type: 2}
   m_sharedMaterial: {fileID: -1608887465286506374, guid: fcc522e9e76f7944c99d1365e5577335, type: 2}
@@ -6050,7 +6051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6987801308082639579, guid: 5ccd9f51122d0cb408af6613d7a3c45a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 47.6
+      value: -24.3
       objectReference: {fileID: 0}
     - target: {fileID: 6987801308082639579, guid: 5ccd9f51122d0cb408af6613d7a3c45a, type: 3}
       propertyPath: m_AnchoredPosition.y

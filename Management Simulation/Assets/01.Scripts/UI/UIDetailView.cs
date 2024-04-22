@@ -55,7 +55,7 @@ public class UIDetailView : MonoBehaviour
         {
             _cardBelief.text = $"{GameManager.instance.cardlist[i].cardHappyAffectValue}";
 
-            _cardTurn.text = $"{GameManager.instance.cardTurns[GameManager.instance.previouseSelectedCardIndex[i]]}";
+            //_cardTurn.text = $"{GameManager.instance.cardTurns[GameManager.instance.previouseSelectedCardIndex[i]]}";
 
         }
     }

@@ -56,9 +56,12 @@ public class UIStatus : MonoBehaviour
     public void StatusUpdate()
     {
         // 포인트가 MAX 값을 넘어갔을경우. 예외처리.
-        if (GameManager.instance.HappyPoint.Value > GameManager.instance.HappyPoint.Max || GameManager.instance.SafetyPoint.Value > GameManager.instance.SafetyPoint.Max)
+        if (GameManager.instance.HappyPoint.Value > GameManager.instance.HappyPoint.Max)
         {
             GameManager.instance.HappyPoint.Value = GameManager.instance.HappyPoint.Max;
+        }
+        else if (GameManager.instance.SafetyPoint.Value > GameManager.instance.SafetyPoint.Max)
+        {
             GameManager.instance.SafetyPoint.Value = GameManager.instance.SafetyPoint.Max;
         }
         else if(GameManager.instance.BeliefPoint.Value > GameManager.instance.BeliefPoint.Max)
