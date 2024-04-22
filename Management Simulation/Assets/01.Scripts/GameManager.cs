@@ -179,6 +179,7 @@ public class GameManager : SingletonMonoBase<GameManager>
 
         foreach (string name in deleteNames)
         {
+            CardDeleteSetValue(cardlist.Find(card => name.Equals(card.name)));
             cardlist.Remove(cardlist.Find(card => name.Equals(card.name)));
             cardTurns.Remove(cardTurns.Find(card => name.Equals(card.name)));
         }

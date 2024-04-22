@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      screaming_0: 7121027816503101641
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

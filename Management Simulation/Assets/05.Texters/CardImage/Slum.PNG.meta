@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Slum_0: -481503434068395080
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

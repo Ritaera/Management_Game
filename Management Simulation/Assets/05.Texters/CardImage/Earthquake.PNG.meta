@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Earthquake_0: 2103503982290428479
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

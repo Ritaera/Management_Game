@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Plague_0: 6122192079788252080
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

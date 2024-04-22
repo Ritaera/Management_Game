@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      drought_0: 3997359333224575275
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

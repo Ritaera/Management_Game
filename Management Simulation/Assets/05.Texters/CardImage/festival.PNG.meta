@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      festival_0: -4825904316522818498
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

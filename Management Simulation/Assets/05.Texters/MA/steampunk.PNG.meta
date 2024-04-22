@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      steampunk_0: 6294679923100964245
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      petPNG_0: -6891970735206329194
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
