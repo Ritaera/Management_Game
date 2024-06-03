@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d13e92bdf3a68264ebd000373227edf9
+=======
+guid: 9db956ce49f6b1a4bae19d11b0580485
+>>>>>>> origin/L.Gyeol
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -195,3 +196,13 @@ public class UIEndingScene : MonoBehaviour
         gameResultData = JsonUtility.FromJson<GameResultData>(File.ReadAllText(resultFilePath));
     }
 }
+=======
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class UIEndingScence : MonoBehaviour
+{
+   
+}
+>>>>>>> origin/L.Gyeol

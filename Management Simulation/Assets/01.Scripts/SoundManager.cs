@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class SoundManager : SingletonMonoBase<SoundManager>
 {
 
+<<<<<<< HEAD
 
     override protected void Awake()
     {
@@ -14,10 +15,20 @@ public class SoundManager : SingletonMonoBase<SoundManager>
         private void Start()
     {
         if (SceneManager.GetActiveScene().name == "StartScene")
+=======
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "GameScene1")
+        {
+            BgmAuioSource.Stop();
+        }
+        else if (SceneManager.GetActiveScene().name == "Main")
+>>>>>>> origin/L.Gyeol
         {
             BgmAuioSource.clip = BgmAudioClip[0];
             BgmAuioSource.Play();
         }
+<<<<<<< HEAD
         else if (SceneManager.GetActiveScene().name == "Tutorial")
         {
             BgmAuioSource.clip = BgmAudioClip[1];
@@ -33,6 +44,8 @@ public class SoundManager : SingletonMonoBase<SoundManager>
             BgmAuioSource.clip = BgmAudioClip[3];
             BgmAuioSource.Play();
         }
+=======
+>>>>>>> origin/L.Gyeol
     }
 
     [Header("++++++++BGMAuioSource++++++++")]

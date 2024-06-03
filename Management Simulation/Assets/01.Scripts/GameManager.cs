@@ -2,9 +2,13 @@ using DiceGame.Singleton;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+<<<<<<< HEAD
 using System.IO;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
+=======
+using UnityEngine;
+>>>>>>> origin/L.Gyeol
 
 [Serializable]
 public class GameFloat
@@ -18,6 +22,7 @@ public class GameFloat
     public float Max = 100f;
 }
 
+<<<<<<< HEAD
 [Serializable]
 public class CardTurnData
 {
@@ -25,6 +30,8 @@ public class CardTurnData
     public int turn;
 }
 
+=======
+>>>>>>> origin/L.Gyeol
 public class GameManager : SingletonMonoBase<GameManager>
 {
     #region 게임 내부 데이터
@@ -34,8 +41,14 @@ public class GameManager : SingletonMonoBase<GameManager>
     public GameFloat CulturePoint = new GameFloat();
 
     [SerializeField]
+<<<<<<< HEAD
     private int _date = 0;
     //private int _count = 0;
+=======
+    private int _gold = 0;
+    private int _date = 0;
+    private int _count = 0;
+>>>>>>> origin/L.Gyeol
 
     // 다음턴 증가량
     [SerializeField]
@@ -52,18 +65,39 @@ public class GameManager : SingletonMonoBase<GameManager>
     //Jang => UpgradeScriptableObject Script에서 선택한 ScriptableObject를 받아와 저장하기 위해 리스트 생성
     [SerializeField] List<UpgradeScriptableObject> upgradeList = new List<UpgradeScriptableObject>();
     // 카드 ScriptableObject의 카드 턴 값을 각가 관리하는 배열.
+<<<<<<< HEAD
     //public List<int> cardTurns = new List<int>();
     public List<CardTurnData> cardTurns = new List<CardTurnData>();
     // 작성자 : 장승호(2024.04.15)
     // 이전 턴에 선택된 카드 인덱스 받아오기 위해 List사용 
     //public List<CardScriptableObject> previouseSelectedCardIndex = new List<CardScriptableObject>();
+=======
+    public List<int> cardTurns = new List<int>();
+    // 작성자 : 장승호(2024.04.15)
+    // 이전 턴에 선택된 카드 인덱스 받아오기 위해 List사용 
+    public List<int> previouseSelectedCardIndex = new List<int>();
+>>>>>>> origin/L.Gyeol
 
     #endregion
 
     #region 프로퍼티
+<<<<<<< HEAD
     [SerializeField]
     public int Gold { get; private set; } = 200;
 
+=======
+    public int Gold
+    {
+        get
+        {
+            return _gold;
+        }
+        set
+        {
+            _gold = value;
+        }
+    }
+>>>>>>> origin/L.Gyeol
     public int Date
     {
         get
@@ -77,6 +111,7 @@ public class GameManager : SingletonMonoBase<GameManager>
 
     public Action PointUpdate;
 
+<<<<<<< HEAD
     // 1. 카드를 뽑았을 때 카드 데이터 불러오기
     // 카드 데이터에 있는 수치를 조정
     // 주의: 카드에는 턴수가 있음. 턴수만큼 매턴 지속.
@@ -140,6 +175,22 @@ public class GameManager : SingletonMonoBase<GameManager>
     public void OnCardDataRemovedListener(int index)
     {
         cardTurns.RemoveAt(index);
+=======
+    override protected void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(gameObject);
+
+        // ScriptableObject에서 턴 값만 받아오기.
+        foreach (var card in CardDataManager.Instance.cardData)
+        {
+            cardTurns.Add(card.cardAffectTurn);
+        }
+    }
+    private void Update()
+    {
+        //PointUpdate();
+>>>>>>> origin/L.Gyeol
     }
 
     // Jang => CardScriptableObject에서 instance 호출을 통해 Coroutine을 하려했으나 불가능해서
@@ -148,18 +199,27 @@ public class GameManager : SingletonMonoBase<GameManager>
     {
 
         // 선택된 카드의 인덱스 정보를 저장.
+<<<<<<< HEAD
         //previouseSelectedCardIndex.Add(index);
         //previouseSelectedCardIndex.Add(scriptableobj);
+=======
+        previouseSelectedCardIndex.Add(index);
+>>>>>>> origin/L.Gyeol
 
         // Jang => valueList에 받아온 scriptableobj 추가
         cardlist.Add(scriptableobj);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/L.Gyeol
         // 현재 값 + 다음 턴 증가량 값 계산 함수 호출
         GameSetValue();
 
         // Jang => 카드에 적용된 턴수가 모든 카드가 같지 않고 다르기 때문에 계산식을 반복문을 통해서 작성
         // Jang => 위에서 valueList에 Scriptableobj에서 받아온 scriptableobj에서 작성된 턴수가 존재하면 반복문을 돌리고
         // Jang => 턴수가 0이 되면 리스트에서 제거
+<<<<<<< HEAD
 
         List<string> deleteNames = new List<string>();
         for (int ix = 0; ix < cardlist.Count; ++ix)
@@ -224,14 +284,38 @@ public class GameManager : SingletonMonoBase<GameManager>
         //    }
         //}
 
+=======
+        for (int i = 0; i < cardlist.Count; i++)
+        {
+
+            // Jang => 카드가 영향을 미치는 턴수는 valueList[i]._cardAffectTurn임으로 cardAffectTurn이 0보다 크면 코루틴 실행
+
+            if (cardTurns[previouseSelectedCardIndex[i]] > 0)
+            {
+                CardPlusSetValue(cardlist[i], previouseSelectedCardIndex[i]);
+            }
+            // Jang => cardAffectTurn이 0, 0보다 작은경우는 리스트에서 제거
+            else
+            {
+                CardDeleteSetValue(cardlist[i]);
+                cardlist.RemoveAt(i);
+                previouseSelectedCardIndex.RemoveAt(i);
+            }
+        }
+
+>>>>>>> origin/L.Gyeol
 
         // 날짜 턴수 증가
         _date++;
     }
 
     // Jang => 게임내의 value값 설정 코루틴
+<<<<<<< HEAD
     //public void CardPlusSetValue(CardScriptableObject scriptableObjects, int index)
     public void CardPlusSetValue(CardScriptableObject scriptableObjects, CardTurnData targetCardTurn)
+=======
+    public void CardPlusSetValue(CardScriptableObject scriptableObjects, int index)
+>>>>>>> origin/L.Gyeol
     {
         // 작성자 장승호.(2024.04.15)
         // ScriptableObject의 내부 bool값 체크하여 true시 건너뛰고 false시 계산식 실행
@@ -247,11 +331,15 @@ public class GameManager : SingletonMonoBase<GameManager>
         }
 
         // 카드 턴수는 계산과 상관없이 매번 감소되어야함
+<<<<<<< HEAD
         //cardTurns[index]--;
         //cardTurns[index].turn--;
         targetCardTurn.turn--;
         Utils.LogGreen($"{scriptableObjects.name}의 카드 턴수 : {/*cardTurns[index]*/ targetCardTurn.turn}");
 
+=======
+        cardTurns[index]--;
+>>>>>>> origin/L.Gyeol
 
     }
     // 작성자 장승호(2024.04.15)
@@ -264,8 +352,11 @@ public class GameManager : SingletonMonoBase<GameManager>
         NextTurnBelief -= scriptableObjects.cardFaithAffectValue;
         NextTurnCulture -= scriptableObjects.cardCulturalAffectValue;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/L.Gyeol
     }
 
     // 건물 업그레이드 + 카드 값 
@@ -275,11 +366,19 @@ public class GameManager : SingletonMonoBase<GameManager>
         SafetyPoint.Value += NextTurnSafety;
         BeliefPoint.Value += NextTurnBelief;
         CulturePoint.Value += NextTurnCulture;
+<<<<<<< HEAD
         Gold += NextTurnGold;
     }
     public void AddUpgradeList(UpgradeScriptableObject upgradeScriptableObject)
     {
         //_count = upgradeList.Count;
+=======
+        _gold += NextTurnGold;
+    }
+    public void AddUpgradeList(UpgradeScriptableObject upgradeScriptableObject)
+    {
+        _count = upgradeList.Count;
+>>>>>>> origin/L.Gyeol
 
         upgradeList.Add(upgradeScriptableObject);
         UpGradeValueSet(upgradeScriptableObject);
@@ -287,10 +386,17 @@ public class GameManager : SingletonMonoBase<GameManager>
     // 건물 업그레이드 값 계산
     public void UpGradeValueSet(UpgradeScriptableObject upgradeScriptableObject)
     {
+<<<<<<< HEAD
         //if (_count >= upgradeList.Count)
         //{
         //    return;
         //}
+=======
+        if (_count >= upgradeList.Count)
+        {
+            return;
+        }
+>>>>>>> origin/L.Gyeol
 
         // 다음턴 값 계산
         NextTurnGold += upgradeScriptableObject.upGradeEveryTurnGold;
@@ -300,6 +406,10 @@ public class GameManager : SingletonMonoBase<GameManager>
         NextTurnCulture += upgradeScriptableObject.upGradeCulturalAffectValue;
 
         // 건물 업그레이드 강화시 사용할 골드
+<<<<<<< HEAD
         Gold -= upgradeScriptableObject.upGradeGold;
+=======
+        _gold -= upgradeScriptableObject.upGradeGold;
+>>>>>>> origin/L.Gyeol
     }
 }

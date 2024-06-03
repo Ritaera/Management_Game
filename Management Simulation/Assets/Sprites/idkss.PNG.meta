@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Management Simulation/Assets/Sprites/idkss.PNG.meta
 guid: 67fafd40784e4a04ba102dba49e8d163
+========
+guid: f65c347a19fbc4d4083df56933be0498
+>>>>>>>> origin/L.Gyeol:Management Simulation/Assets/Sprites/idks-removebg-preview.png.meta
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -131,7 +135,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+<<<<<<<< HEAD:Management Simulation/Assets/Sprites/idkss.PNG.meta
       idkss_0: -6197697507215879092
+========
+      idks-removebg-preview_0: -8381584721745538236
+>>>>>>>> origin/L.Gyeol:Management Simulation/Assets/Sprites/idks-removebg-preview.png.meta
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

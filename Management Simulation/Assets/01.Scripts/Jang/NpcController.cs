@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+using System.Collections;
+using System.Collections.Generic;
+>>>>>>> origin/L.Gyeol
 using UnityEngine;
 
 public class NpcController : MonoBehaviour
@@ -14,14 +19,25 @@ public class NpcController : MonoBehaviour
 
     private float xScaleValue = 0f;
 
+<<<<<<< HEAD
     private float xPosition = 0f;
 
 
+=======
+>>>>>>> origin/L.Gyeol
     void Start()
     {
         moveDirection = new Vector2(_moveVector, 0f);
         xScaleValue = transform.localScale.x;
+<<<<<<< HEAD
         xPosition = transform.localPosition.x;
+=======
+
+        if(_moveVector < 0f)
+        {
+            transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
+        }
+>>>>>>> origin/L.Gyeol
     }
 
     void Update()
@@ -32,6 +48,7 @@ public class NpcController : MonoBehaviour
 
         if (moveDirection.x > 0)
         {
+<<<<<<< HEAD
             transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
         }
         else
@@ -45,4 +62,22 @@ public class NpcController : MonoBehaviour
             moveDirection *= -1f;
         }
     }
+=======
+            transform.localScale = new Vector2(xScaleValue, transform.localScale.y);
+        }
+        else
+        {
+            transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
+        }
+
+        // 장애물이 움직일 범위를 벗어나면, 반대 방향으로 움직이도록 방향을 바꿈
+        if (transform.position.x <= -_moveRange || transform.position.x >= _moveRange)
+        {
+            transform.localScale = new Vector2(-xScaleValue, transform.localScale.y);
+            moveDirection *= -1f;
+        }
+    }
+
+
+>>>>>>> origin/L.Gyeol
 }

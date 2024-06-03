@@ -131,7 +131,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+<<<<<<<< HEAD:Management Simulation/Assets/Sprites/Ending-removebg-preview.png.meta
       Ending-removebg-preview_0: 110924772008178849
+========
+      Ending-removebg-preview2-removebg-preview_0: 917867483510447462
+>>>>>>>> origin/L.Gyeol:Management Simulation/Assets/Sprites/Ending-removebg-preview2-removebg-preview.png.meta
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
